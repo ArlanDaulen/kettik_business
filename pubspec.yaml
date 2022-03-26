@@ -54,6 +54,7 @@ dependencies:
   dio: ^4.0.4
   connectivity: ^3.0.6
   fluttertoast: ^8.0.9
+  flutter_multi_formatter: ^2.5.1
 
 dev_dependencies:
   flutter_test:
