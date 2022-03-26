@@ -1,25 +1,30 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:kettik_business/features/profile/presentation/pages/number_trivia_page.dart';
-import 'injection_container.dart' as di;
+import 'package:flutter/services.dart';
+
+import 'app/main/app.dart';
+import 'app/main/app_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init();
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  /// Set device orientation
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  @override
-  Widget build(BuildContext context) {
-    return  MaterialApp(
-      title: "Number trivia",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.green,
-      ),
-      home: const NumberTriviaPage(),
-    );
-  }
+  final model = MyAppModel();
+  await model.init();
+
+  runApp(
+    EasyLocalization(
+        supportedLocales: const [
+          Locale('en', 'EN'),
+          Locale('ru', 'RU'),
+          Locale('kk', 'KK'),
+        ],
+        path: 'assets/lang', // <-- change the path of the translation files
+        fallbackLocale: const Locale('en', 'EN'),
+        child: MyApp(
+          model: model,
+        )),
+  );
 }
