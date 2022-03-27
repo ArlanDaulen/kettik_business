@@ -31,28 +31,7 @@ class CustomAppBar extends PreferredSize {
       decoration: const BoxDecoration(
         color: AppColors.primaryColor,
       ),
-      // child: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   children: [
-      //     isWithBackButton
-      //         ? InkWell(
-      //             child: const Icon(
-      //               Icons.arrow_back_ios,
-      //               color: AppColors.whiteColor,
-      //             ),
-      //             onTap: () => Navigator.pop(context),
-      //           )
-      //         : SizedBox(),
-      //     Text(
-      //       title,
-      //       style: TextStyle(
-      //         color: AppColors.whiteColor,
-      //         fontSize: getProportionateScreenWidth(36),
-      //       ),
-      //       textAlign: TextAlign.center,
-      //     ),
-      //   ],
-      // ),
+      
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

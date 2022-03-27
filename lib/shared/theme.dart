@@ -15,6 +15,7 @@ class AppColors {
   static const Color profileInfoLinesColor = Color(0xffEFF2F7);
   static const Color inactiveColor = Color(0xffafb2b5);
   static const Color whiteColor = Colors.white;
+  static const Color greyColor = Color(0xffF8F8F8);
 
   ///[_Divider]
   static const Color dividerColor = Color(0xffE9E9E9);
@@ -47,6 +48,22 @@ class AppSvgImages {
       'assets/images/svg/profile_chosen.svg';
   static const String avatar_ic = 'assets/images/svg/avatar.svg';
   static const String telegram_ic = 'assets/images/svg/telegram.svg';
+  static const String about_business_ic =
+      'assets/images/svg/about_business.svg';
+  static const String language_ic = 'assets/images/svg/language.svg';
+  static const String help_ic = 'assets/images/svg/help.svg';
+  static const String logout_ic = 'assets/images/svg/logout.svg';
+  static const String chosen_ic = 'assets/images/svg/chosen.svg';
+  static const String unchosen_ic = 'assets/images/svg/unchosen.svg';
+  static const String plus_ic = 'assets/images/svg/plus.svg';
+  static const String minus_ic = 'assets/images/svg/minus.svg';
+  static const String email_ic = 'assets/images/svg/email.svg';
+  static const String telegram_dark_ic = 'assets/images/svg/telegram_dark.svg';
+  static const String whatsapp_dark_ic = 'assets/images/svg/whatsapp_dark.svg';
+  static const String person_ic = 'assets/images/svg/person.svg';
+  static const String web_ic = 'assets/images/svg/web.svg';
+  static const String phone_home_ic = 'assets/images/svg/phone_home.svg';
+  static const String location_ic = 'assets/images/svg/location.svg';
 }
 
 class AppRiveAnimations {
@@ -58,6 +75,5 @@ class AppRiveAnimations {
 }
 
 class AppPngPaths {
-  
-  static const String whatsapp_ic = 'assets/images/svg/wpp_logo.png';
+  static const String whatsapp_ic = 'assets/icons/png/wpp_logo.png';
 }

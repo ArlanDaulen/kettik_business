@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -5,6 +7,8 @@ import 'package:kettik_business/shared/size_config.dart';
 import '../../../app/data/models/user_profile_model.dart';
 
 class ProfileProvider extends BaseBloc {
+  String currentCity = 'Алматы';
+
   final UserProfile user = UserProfile(
     id: 1,
     fullName: 'Amangeldi Spatay',
@@ -18,5 +22,11 @@ class ProfileProvider extends BaseBloc {
     setLoading(true);
     SizeConfig().init(context);
     setLoading(false);
+  }
+
+  setCurrentCity(String city) {
+    currentCity = city;
+    notifyListeners();
+    log(currentCity);
   }
 }
