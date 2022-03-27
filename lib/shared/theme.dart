@@ -64,6 +64,14 @@ class AppSvgImages {
   static const String web_ic = 'assets/images/svg/web.svg';
   static const String phone_home_ic = 'assets/images/svg/phone_home.svg';
   static const String location_ic = 'assets/images/svg/location.svg';
+  static const String calendar_ic = 'assets/images/svg/calendar.svg';
+  static const String all_tours_ic = 'assets/images/svg/all_tours.svg';
+  static const String ticket_ic = 'assets/images/svg/ticket.svg';
+  static const String star_ic = 'assets/images/svg/star.svg';
+  static const String departure_date_ic = 'assets/images/svg/departure_date.svg';
+  static const String group_ic = 'assets/images/svg/group.svg';
+  static const String ticket_dark_ic = 'assets/images/svg/ticket_dark.svg';
+  static const String phone_home_outlined_ic = 'assets/images/svg/phone_home_outlined.svg';
 }
 
 class AppRiveAnimations {
@@ -76,4 +84,6 @@ class AppRiveAnimations {
 
 class AppPngPaths {
   static const String whatsapp_ic = 'assets/icons/png/wpp_logo.png';
+  static const String altym_emel_ic = 'assets/icons/png/altyn-emel.png';
+  static const String charyn_ic = 'assets/icons/png/charyn.png';
 }
