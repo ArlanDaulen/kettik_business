@@ -4,6 +4,7 @@ import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/custom_app_bar.dart';
 import 'package:kettik_business/widgets/default_button.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 typedef OnContactAdded = void Function(List<TextEditingController>);
 
@@ -75,6 +76,14 @@ class AddContactsScreen extends StatelessWidget {
                 ),
                 TextField(
                   textAlign: TextAlign.left,
+                  keyboardType: index == 3 || index == 4
+                      ? TextInputType.number
+                      : index == 0
+                          ? TextInputType.emailAddress
+                          : TextInputType.name,
+                  inputFormatters: [
+                    if (index == 3 || index == 4) numberFormatter
+                  ],
                   controller: controllers[index],
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(28),
@@ -117,4 +126,7 @@ class AddContactsScreen extends StatelessWidget {
       ),
     );
   }
+
+  var numberFormatter = MaskTextInputFormatter(
+      mask: '+# (###) ###-##-##', filter: {'#': RegExp(r'[0-9]')});
 }

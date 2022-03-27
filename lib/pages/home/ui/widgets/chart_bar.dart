@@ -7,15 +7,6 @@ import 'package:kettik_business/shared/size_config.dart';
 import '../../../../shared/theme.dart';
 
 class ChartBar extends StatefulWidget {
-  final List<Color> availableColors = const [
-    Colors.purpleAccent,
-    Colors.yellow,
-    Colors.lightBlue,
-    Colors.orange,
-    Colors.pink,
-    Colors.redAccent,
-  ];
-
   @override
   _ChartBarState createState() => _ChartBarState();
 }
@@ -72,12 +63,12 @@ class _ChartBarState extends State<ChartBar> {
       barRods: [
         BarChartRodData(
           y: isTouched ? y + 1 : y,
-          colors: isTouched ? [Colors.yellow] : [barColor],
+          colors: [barColor],
           width: width,
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
             y: 500,
-            colors: [barColor],
+            colors: [Colors.white],
           ),
         )
       ],
@@ -194,6 +185,4 @@ class _ChartBarState extends State<ChartBar> {
       gridData: FlGridData(show: false),
     );
   }
-
- 
 }

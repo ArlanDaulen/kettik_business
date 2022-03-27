@@ -80,6 +80,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
                 profileProvider: widget.model,
                 onCityChosen: _onCityChosen,
               ),
+              isEnabled: false,
             ),
             SizedBox(
               height: getProportionateScreenHeight(20),
@@ -92,6 +93,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               page: AddDescriptionScreen(
                 onDescriptionAdded: _onDescriptionAdded,
               ),
+              isEnabled: currentDescription != null,
             ),
             SizedBox(
               height: getProportionateScreenHeight(20),
@@ -114,6 +116,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
     required String title,
     required String text,
     required Widget page,
+    required bool isEnabled,
   }) {
     return GestureDetector(
       onTap: () =>
@@ -138,7 +141,9 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               style: TextStyle(
                 fontSize: getProportionateScreenHeight(28),
                 fontWeight: FontWeight.w500,
-                color: AppColors.primaryColor,
+                color: isEnabled
+                    ? AppColors.systemBlackColor
+                    : AppColors.primaryColor,
               ),
             ),
             SizedBox(
@@ -188,12 +193,17 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildContactsData(1, 2, AppSvgImages.person_ic),
-                      _buildContactsData(0, null, AppSvgImages.email_ic),
-                      _buildContactsData(
-                          3, null, AppSvgImages.telegram_dark_ic),
-                      _buildContactsData(
-                          4, null, AppSvgImages.whatsapp_dark_ic),
+                      if (contactControllers![1].text != '' &&
+                          contactControllers![2].text != '')
+                        _buildContactsData(1, 2, AppSvgImages.person_ic),
+                      if (contactControllers![0].text != '')
+                        _buildContactsData(0, null, AppSvgImages.email_ic),
+                      if (contactControllers![3].text != '')
+                        _buildContactsData(
+                            3, null, AppSvgImages.telegram_dark_ic),
+                      if (contactControllers![4].text != '')
+                        _buildContactsData(
+                            4, null, AppSvgImages.whatsapp_dark_ic),
                     ],
                   ),
             const Divider(
@@ -262,9 +272,12 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildAddressData(0, AppSvgImages.location_ic),
-                        _buildAddressData(1, AppSvgImages.phone_home_ic),
-                        _buildAddressData(2, AppSvgImages.web_ic),
+                        if (addressControllers![0].text != '')
+                          _buildAddressData(0, AppSvgImages.location_ic),
+                        if (addressControllers![1].text != '')
+                          _buildAddressData(1, AppSvgImages.phone_home_ic),
+                        if (addressControllers![2].text != '')
+                          _buildAddressData(2, AppSvgImages.web_ic),
                       ],
                     ),
               const Divider(

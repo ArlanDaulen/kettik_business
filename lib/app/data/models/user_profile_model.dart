@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class UserProfile {
   int? id;
   String? email;
@@ -5,6 +7,7 @@ class UserProfile {
   String? phone;
   String? telegramPhone;
   String? whatsappPhone;
+  File? image;
 
   UserProfile(
       {this.id,
@@ -12,7 +15,8 @@ class UserProfile {
       this.fullName,
       this.phone,
       this.telegramPhone,
-      this.whatsappPhone});
+      this.whatsappPhone,
+      this.image});
 
   UserProfile.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,4 +37,21 @@ class UserProfile {
     data['whatsappPhone'] = this.whatsappPhone;
     return data;
   }
+
+  UserProfile copyWith({
+    String? email,
+    String? fullName,
+    String? telegramPhone,
+    String? whatsappPhone,
+    File? image,
+  }) =>
+      UserProfile(
+        id: id,
+        email: email ?? this.email,
+        fullName: fullName ?? this.fullName,
+        phone: phone,
+        telegramPhone: telegramPhone ?? this.telegramPhone,
+        whatsappPhone: whatsappPhone ?? this.whatsappPhone,
+        image: image ?? this.image!,
+      );
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
@@ -15,10 +17,19 @@ class UserInfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset(
-          AppSvgImages.avatar_ic,
-          height: getProportionateScreenHeight(242),
-        ),
+        model.user.image == null
+            ? SvgPicture.asset(
+                AppSvgImages.avatar_ic,
+                height: getProportionateScreenHeight(242),
+              )
+            : ClipOval(
+                child: Image.file(
+                  model.user.image!,
+                  width: getProportionateScreenWidth(242),
+                  height: getProportionateScreenHeight(242),
+                  fit: BoxFit.cover,
+                ),
+              ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,7 +55,7 @@ class UserInfo extends StatelessWidget {
             _buildMessangerPhones(
                 Image.asset(
                   AppPngPaths.whatsapp_ic,
-                  width: getProportionateScreenWidth(50),
+                  width: getProportionateScreenWidth(45),
                   height: getProportionateScreenHeight(50),
                 ),
                 model.user.whatsappPhone!),

@@ -53,12 +53,12 @@ class _HelpScreenState extends State<HelpScreen> {
             Text(
               'Часто задаваемые вопросы',
               style: TextStyle(
-                fontSize: getProportionateScreenHeight(36),
+                fontSize: getProportionateScreenHeight(42),
                 fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(
-              height: getProportionateScreenHeight(20),
+              height: getProportionateScreenHeight(40),
             ),
             Expanded(
               child: ListView.separated(
@@ -79,7 +79,7 @@ class _HelpScreenState extends State<HelpScreen> {
                           Text(
                             questions[index],
                             style: TextStyle(
-                              fontSize: getProportionateScreenHeight(28),
+                              fontSize: getProportionateScreenHeight(32),
                               fontWeight: FontWeight.w300,
                             ),
                           ),
@@ -101,7 +101,7 @@ class _HelpScreenState extends State<HelpScreen> {
                           ? Text(
                               answers[index],
                               style: TextStyle(
-                                fontSize: getProportionateScreenHeight(24),
+                                fontSize: getProportionateScreenHeight(28),
                                 fontWeight: FontWeight.w300,
                               ),
                             )

@@ -83,7 +83,7 @@ class Settings extends StatelessWidget {
         context: context,
         builder: (_) => CupertinoAlertDialog(
           title: Text(
-            'Э ска точно шыккын келе ма, щенок?',
+            'Вы действительно хотите выйти из профиля?',
             style: TextStyle(
               fontSize: getProportionateScreenHeight(36),
             ),
