@@ -54,11 +54,16 @@ dependencies:
   dio: ^4.0.4
   connectivity: ^3.0.6
   fluttertoast: ^8.0.9
+  flutter_keyboard_visibility: ^5.2.0
+  carousel_slider: ^4.0.0
+  syncfusion_flutter_datepicker: ^19.4.56
+  bottom_picker: ^1.8.0
 
 dev_dependencies:
+  build_runner:
+  freezed: ^0.14.1+1
   flutter_test:
     sdk: flutter
-  mockito: ^5.1.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
