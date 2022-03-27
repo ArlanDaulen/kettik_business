@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                           width: getProportionateScreenWidth(40),
                         ),
                         Text(
-                          '17 мар. - 17 апр',
+                          'Mar 17 - 17 Apr',
                           style: TextStyle(
                             fontSize: getProportionateScreenHeight(36),
                             fontWeight: FontWeight.w400,
@@ -76,16 +76,16 @@ class HomeScreen extends StatelessWidget {
                       height: getProportionateScreenHeight(20),
                     ),
                     _buildStatSections(
-                        AppSvgImages.all_tours_ic, 'Всего туров', 4),
+                        AppSvgImages.all_tours_ic, 'Total tours', 4),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Количество билетов', 44),
+                        AppSvgImages.ticket_ic, 'Number of tickets', 44),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Билетов продано', 23),
+                        AppSvgImages.ticket_ic, 'Tickets sold', 23),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Билетов осталось', 21),
+                        AppSvgImages.ticket_ic, 'Tickets left', 21),
                   ],
                 ),
               ),
@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                 height: getProportionateScreenHeight(40),
               ),
               Text(
-                'Статистика туров',
+                'Tour statistics',
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(36),
                   fontWeight: FontWeight.w500,
@@ -156,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Алматы, Казахстан',
+                                'Almaty, Kazakhstan',
                                 style: TextStyle(
                                   fontSize: getProportionateScreenHeight(20),
                                   fontWeight: FontWeight.w400,
@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    '12.04 - 17.04, 5 ночей',
+                                    '12.04 - 17.04, 5 nights',
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),
@@ -209,7 +209,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    'Куплено мест: 32',
+                                    'Seats purchased: 32',
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),
@@ -232,7 +232,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    'Доступно: 8',
+                                    'Available: 8',
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),

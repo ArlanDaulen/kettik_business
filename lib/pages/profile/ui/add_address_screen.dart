@@ -13,9 +13,9 @@ class AddAddressScreen extends StatelessWidget {
   final OnAddressAdded onAddressAdded;
 
   List<String> titles = [
-    'Адрес компании',
-    'Телефон компании',
-    'Сайт',
+    'Company address',
+    'Company phone',
+    'Website',
   ];
 
   List<TextEditingController> controllers =
@@ -28,7 +28,7 @@ class AddAddressScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          title: 'Добавить контакты',
+          title: 'Add contacts',
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -38,7 +38,7 @@ class AddAddressScreen extends StatelessWidget {
             right: getProportionateScreenWidth(40),
           ),
           child: DefaultButton(
-            text: 'Сохранить',
+            text: 'Save',
             press: () => Navigator.of(context).pop({
               onAddressAdded(controllers),
             }),

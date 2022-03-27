@@ -13,7 +13,7 @@ class ContactWithClientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Связаться с клиентом',
+        title: 'Contact a client',
         isWithBackButton: true,
       ),
       body: Padding(
@@ -58,7 +58,7 @@ class ContactWithClientScreen extends StatelessWidget {
               height: getProportionateScreenHeight(20),
             ),
             DefaultText(
-              text: 'Написать',
+              text: 'Write',
               fontSize: 28,
             ),
             SizedBox(
@@ -91,7 +91,7 @@ class ContactWithClientScreen extends StatelessWidget {
               height: getProportionateScreenHeight(20),
             ),
             DefaultText(
-              text: 'Связаться с Sparta',
+              text: 'Contact Sparta',
               fontSize: 28,
             ),
             SizedBox(

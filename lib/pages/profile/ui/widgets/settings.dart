@@ -21,7 +21,7 @@ class Settings extends StatelessWidget {
       children: [
         _buildSettings(
             AppSvgImages.about_business_ic,
-            'О бизнесе',
+            'About business',
             context,
             () => Navigator.push(
                 context,
@@ -31,20 +31,20 @@ class Settings extends StatelessWidget {
                         )))),
         _buildSettings(
           AppSvgImages.language_ic,
-          'Сменить язык',
+          'Change language',
           context,
           () => changeLanguage(context),
         ),
         _buildSettings(
           AppSvgImages.help_ic,
-          'Помощь',
+          'Help',
           context,
           () => Navigator.push(
               context, MaterialPageRoute(builder: (_) => HelpScreen())),
         ),
         _buildSettings(
           AppSvgImages.logout_ic,
-          'Выйти',
+          'Logout',
           context,
           () => logout(context),
         ),
@@ -83,7 +83,7 @@ class Settings extends StatelessWidget {
         context: context,
         builder: (_) => CupertinoAlertDialog(
           title: Text(
-            'Вы действительно хотите выйти из профиля?',
+            'Are you sure you want to log out of your profile?',
             style: TextStyle(
               fontSize: getProportionateScreenHeight(36),
             ),
@@ -91,7 +91,7 @@ class Settings extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               child: Text(
-                'Нет',
+                'No',
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                 ),
@@ -101,7 +101,7 @@ class Settings extends StatelessWidget {
             CupertinoDialogAction(
               isDefaultAction: true,
               child: Text(
-                'Да',
+                'Yes',
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                 ),

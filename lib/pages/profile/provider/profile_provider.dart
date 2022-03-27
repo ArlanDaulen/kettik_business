@@ -12,7 +12,7 @@ import 'package:path/path.dart';
 import '../../../app/data/models/user_profile_model.dart';
 
 class ProfileProvider extends BaseBloc {
-  String currentCity = 'Алматы';
+  String currentCity = 'Almaty';
 
   UserProfile user = UserProfile(
     id: 1,

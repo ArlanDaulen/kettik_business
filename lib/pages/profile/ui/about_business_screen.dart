@@ -60,7 +60,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'О бизнесе',
+        title: 'About business',
         isWithBackButton: true,
       ),
       body: Padding(
@@ -74,8 +74,8 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               height: getProportionateScreenHeight(30),
             ),
             _buildSections(
-              title: 'Город',
-              text: currentCity == null ? 'Выберите город' : currentCity!,
+              title: 'City',
+              text: currentCity == null ? 'Choose city' : currentCity!,
               page: ChooseCityScreen(
                 profileProvider: widget.model,
                 onCityChosen: _onCityChosen,
@@ -86,9 +86,9 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               height: getProportionateScreenHeight(20),
             ),
             _buildSections(
-              title: 'Описание',
+              title: 'Description',
               text: currentDescription == null
-                  ? 'Добавить описание'
+                  ? 'Add description'
                   : currentDescription!,
               page: AddDescriptionScreen(
                 onDescriptionAdded: _onDescriptionAdded,
@@ -172,7 +172,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Контакты',
+              'Contacts',
               style: TextStyle(
                 fontSize: getProportionateScreenHeight(32),
                 fontWeight: FontWeight.w500,
@@ -183,7 +183,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
             ),
             contactControllers == null
                 ? Text(
-                    'Добавить контакты',
+                    'Add contacts',
                     style: TextStyle(
                       fontSize: getProportionateScreenHeight(28),
                       fontWeight: FontWeight.w500,
@@ -251,7 +251,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Контакты',
+                'Contacts',
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                   fontWeight: FontWeight.w500,
@@ -262,7 +262,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               ),
               addressControllers == null
                   ? Text(
-                      'Добавить адресс',
+                      'Add address',
                       style: TextStyle(
                         fontSize: getProportionateScreenHeight(28),
                         fontWeight: FontWeight.w500,

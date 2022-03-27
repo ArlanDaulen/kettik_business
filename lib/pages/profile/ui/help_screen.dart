@@ -13,17 +13,17 @@ class HelpScreen extends StatefulWidget {
 
 class _HelpScreenState extends State<HelpScreen> {
   List<String> questions = [
-    'Для чего нужно это приложение?',
-    'Неге Али чорт?',
-    'Асылжан коп кешиге ма?',
-    'А Спат че?',
+    'What is this app for?',
+    'Why Ali damn it?',
+    'Is Asylzhan a lot of people?',
+    'And what about Spat?',
   ];
 
   List<String> answers = [
-    '',
-    'Али чорт вот и все. И еще Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-    'Коп кешиге ма? Епать ол вообще келмид го.',
-    'Ал Спат просто красавчик. Full-stack разработчик. Микамен бэк жактан жарыстыру керек.',
+    'Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
+    'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ',
   ];
 
   List<bool> isAnswerVisible = List.generate(4, (index) => false);
@@ -38,7 +38,7 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Помощь',
+        title: 'Help',
         isWithBackButton: true,
       ),
       body: Padding(
@@ -51,7 +51,7 @@ class _HelpScreenState extends State<HelpScreen> {
               height: getProportionateScreenHeight(30),
             ),
             Text(
-              'Часто задаваемые вопросы',
+              'Frequently asked Questions',
               style: TextStyle(
                 fontSize: getProportionateScreenHeight(42),
                 fontWeight: FontWeight.w400,

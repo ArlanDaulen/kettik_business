@@ -80,7 +80,7 @@ class TourDetailsScreen extends StatelessWidget {
                   horizontal: getProportionateScreenWidth(10),
                 ),
                 child: Text(
-                  'Алматы, Казахстан',
+                  'Almaty, Kazakhstan',
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(24),
                   ),
@@ -116,7 +116,7 @@ class TourDetailsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(10)),
                 child: Text(
-                  'Список клиентов',
+                  'List of clients',
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(36),
                     fontWeight: FontWeight.bold,
