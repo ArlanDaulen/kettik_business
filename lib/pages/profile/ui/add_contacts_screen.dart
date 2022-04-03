@@ -15,10 +15,10 @@ class AddContactsScreen extends StatelessWidget {
 
   List<String> titles = [
     'E-mail',
-    'Фамилия',
-    'Имя',
-    'Добавить номер Whatsapp',
-    'Добавить номер Telegram',
+    'Surname',
+    'Name',
+    'Add Whatsapp number',
+    'Add Telegram number',
   ];
 
   List<TextEditingController> controllers =
@@ -31,7 +31,7 @@ class AddContactsScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          title: 'Добавить контакты',
+          title: 'Add contacts',
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -41,7 +41,7 @@ class AddContactsScreen extends StatelessWidget {
             right: getProportionateScreenWidth(40),
           ),
           child: DefaultButton(
-            text: 'Сохранить',
+            text: 'Save',
             press: () => Navigator.of(context).pop({
               onContactAdded(controllers),
             }),

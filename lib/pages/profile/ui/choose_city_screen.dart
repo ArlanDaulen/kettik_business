@@ -30,7 +30,7 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: CustomAppBar(
-            title: 'Выберите город',
+            title: 'Choose city',
             isWithBackButton: true,
           ),
           bottomSheet: Padding(
@@ -39,7 +39,7 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
               vertical: getProportionateScreenHeight(20),
             ),
             child: DefaultButton(
-              text: 'Сохранить',
+              text: 'Save',
               press: () {
                 // model.saveSelectedCity();
                 Navigator.of(context)

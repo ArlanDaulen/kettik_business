@@ -29,7 +29,7 @@ class ChangeProfileScreen extends StatefulWidget {
 
 class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
   List<String> titles = [
-    'Имя',
+    'Name',
     'E-mail',
     'Telegram',
     'What\'sapp',
@@ -49,7 +49,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
     controllers.forEach((element) {
       if (element.text != '') {
         widget.model.setUser(controllers, image!);
-      } 
+      }
     });
   }
 
@@ -58,7 +58,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
-        title: 'Изменить профиль',
+        title: 'Edit Profile',
         isWithBackButton: true,
       ),
       bottomSheet: Padding(
@@ -67,7 +67,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
           vertical: getProportionateScreenHeight(30),
         ),
         child: DefaultButton(
-          text: 'Сохранить',
+          text: 'Save',
           press: () => Navigator.of(context).pop({
             widget.onProfileChanged,
             _checkChanges(),
@@ -113,7 +113,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
                                 onImagePicked: _onImagePicked);
                           }),
                       child: DefaultText(
-                        text: 'Выбрать фотографию',
+                        text: 'Choose photo',
                         color: AppColors.primaryColor,
                         fontSize: 28,
                       )),

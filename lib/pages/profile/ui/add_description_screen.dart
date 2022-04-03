@@ -19,7 +19,7 @@ class AddDescriptionScreen extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: CustomAppBar(
-          title: 'Добавить описание',
+          title: 'Add description',
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -28,10 +28,9 @@ class AddDescriptionScreen extends StatelessWidget {
             vertical: getProportionateScreenHeight(30),
           ),
           child: DefaultButton(
-            text: 'Сохранить',
-            press: () => Navigator.of(context).pop({
-              onDescriptionAdded(controller.text)
-            }),
+            text: 'Save',
+            press: () => Navigator.of(context)
+                .pop({onDescriptionAdded(controller.text)}),
           ),
         ),
         body: Padding(
@@ -61,7 +60,7 @@ class AddDescriptionScreen extends StatelessWidget {
                     fontSize: getProportionateScreenHeight(28),
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Расспешите про вашу компанию',
+                    hintText: 'Write about your company',
                     hintStyle: TextStyle(
                       fontSize: getProportionateScreenHeight(28),
                     ),

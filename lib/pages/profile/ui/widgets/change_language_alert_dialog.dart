@@ -17,7 +17,7 @@ class _ChangeLanguageAlertDialogState extends State<ChangeLanguageAlertDialog> {
   List<String> texts = [
     'Қазақша',
     'Русский',
-    'Язык жестов',
+    'English',
   ];
 
   @override

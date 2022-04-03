@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: getProportionateScreenHeight(30),
               ),
               DefaultButton(
-                text: 'Изменить',
+                text: 'Change',
                 press: () => Navigator.push(
                   context,
                   MaterialPageRoute(

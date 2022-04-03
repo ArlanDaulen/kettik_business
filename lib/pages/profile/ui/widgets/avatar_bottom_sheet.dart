@@ -75,7 +75,7 @@ class AvatarBottomSheet extends StatelessWidget {
                       vertical: getProportionateScreenHeight(20),
                     ),
                     child: DefaultText(
-                      text: 'Снять фотографию',
+                      text: 'Take a photo',
                       color: AppColors.primaryColor,
                       fontSize: 32,
                     ),
@@ -94,7 +94,7 @@ class AvatarBottomSheet extends StatelessWidget {
                       vertical: getProportionateScreenHeight(20),
                     ),
                     child: DefaultText(
-                      text: 'Открыть галерею',
+                      text: 'Open gallery',
                       color: AppColors.primaryColor,
                       fontSize: 32,
                     ),
@@ -113,7 +113,7 @@ class AvatarBottomSheet extends StatelessWidget {
                             vertical: getProportionateScreenHeight(20),
                           ),
                           child: DefaultText(
-                            text: 'Удалить фотографию',
+                            text: 'Delete photo',
                             color: AppColors.primaryColor,
                             fontSize: 32,
                           ),
@@ -138,7 +138,7 @@ class AvatarBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: DefaultText(
-                text: 'Отменить',
+                text: 'Cancel',
                 color: AppColors.primaryColor,
                 fontSize: 32,
               ),

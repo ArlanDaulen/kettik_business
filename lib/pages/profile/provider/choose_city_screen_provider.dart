@@ -9,18 +9,18 @@ class ChooseCityProvider extends BaseBloc {
   List<bool> cityBools = List.generate(12, (index) => false);
 
   Map<int, String> cities = {
-    0: 'Алматы',
-    1: 'Нур-Султан (Астана)',
-    2: 'Караганда',
-    3: 'Шымкент',
-    4: 'Актобе',
-    5: 'Костанай',
-    6: 'Актау',
-    7: 'Уральск',
-    8: 'Усть-Каменогорск',
-    9: 'Атырау',
-    10: 'Сарыбулак',
-    11: 'Фабричный',
+    0: 'Almaty',
+    1: 'Nur-Sultan (Astana)',
+    2: 'Karaganda',
+    3: 'Shymkent',
+    4: 'Aktobe',
+    5: 'Kostanay',
+    6: 'Aktau',
+    7: 'Uralsk',
+    8: 'Ust-Kamenogorsk',
+    9: 'Atyrau',
+    10: 'Sarybulak',
+    11: 'Factory',
   };
 
   int? currentCityIndex;
