@@ -29,6 +29,7 @@ class ProfileProvider extends BaseBloc {
   init(BuildContext context) {
     setLoading(true);
     SizeConfig().init(context);
+
     setLoading(false);
     log(user.fullName!);
   }
@@ -49,8 +50,6 @@ class ProfileProvider extends BaseBloc {
     );
     notifyListeners();
   }
-
-
 
   // Future pickImage(ImageSource source) async {
   //   try {

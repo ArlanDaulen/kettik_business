@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -106,25 +107,25 @@ class _ChartBarState extends State<ChartBar> {
             String weekDay;
             switch (group.x.toInt()) {
               case 0:
-                weekDay = 'Monday';
+                weekDay = 'monday'.tr();
                 break;
               case 1:
-                weekDay = 'Tuesday';
+                weekDay = 'tuesday'.tr();
                 break;
               case 2:
-                weekDay = 'Wednesday';
+                weekDay = 'wednesday'.tr();
                 break;
               case 3:
-                weekDay = 'Thursday';
+                weekDay = 'thursday'.tr();
                 break;
               case 4:
-                weekDay = 'Friday';
+                weekDay = 'friday'.tr();
                 break;
               case 5:
-                weekDay = 'Saturday';
+                weekDay = 'saturday'.tr();
                 break;
               case 6:
-                weekDay = 'Sunday';
+                weekDay = 'sunday'.tr();
                 break;
               default:
                 throw Error();

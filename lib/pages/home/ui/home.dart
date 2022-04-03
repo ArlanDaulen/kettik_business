@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
@@ -76,16 +77,16 @@ class HomeScreen extends StatelessWidget {
                       height: getProportionateScreenHeight(20),
                     ),
                     _buildStatSections(
-                        AppSvgImages.all_tours_ic, 'Total tours', 4),
+                        AppSvgImages.all_tours_ic, 'totalTours'.tr(), 4),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Number of tickets', 44),
+                        AppSvgImages.ticket_ic, 'numberOfTickets'.tr(), 44),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Tickets sold', 23),
+                        AppSvgImages.ticket_ic, 'ticketsSold'.tr(), 23),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     _buildStatSections(
-                        AppSvgImages.ticket_ic, 'Tickets left', 21),
+                        AppSvgImages.ticket_ic, 'ticketsLeft'.tr(), 21),
                   ],
                 ),
               ),
@@ -93,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                 height: getProportionateScreenHeight(40),
               ),
               Text(
-                'Tour statistics',
+                'tourStatistics'.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(36),
                   fontWeight: FontWeight.w500,
@@ -186,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    '12.04 - 17.04, 5 nights',
+                                    '12.04 - 17.04, 5 ' + 'night'.tr(),
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),
@@ -209,7 +210,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    'Seats purchased: 32',
+                                    'seatsPurchased'.tr() + ': 32',
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),
@@ -232,7 +233,7 @@ class HomeScreen extends StatelessWidget {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Text(
-                                    'Available: 8',
+                                    'available'.tr() + ': 8',
                                     style: TextStyle(
                                       fontSize:
                                           getProportionateScreenHeight(18),

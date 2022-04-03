@@ -1,11 +1,13 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
 import 'package:kettik_business/pages/profile/ui/help_screen.dart';
 import 'package:kettik_business/pages/profile/ui/widgets/change_language_alert_dialog.dart';
+import 'package:kettik_business/pages/profile/ui/widgets/lang.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 
@@ -21,7 +23,7 @@ class Settings extends StatelessWidget {
       children: [
         _buildSettings(
             AppSvgImages.about_business_ic,
-            'About business',
+            'aboutBusiness'.tr(),
             context,
             () => Navigator.push(
                 context,
@@ -31,20 +33,20 @@ class Settings extends StatelessWidget {
                         )))),
         _buildSettings(
           AppSvgImages.language_ic,
-          'Change language',
+          'lang'.tr(),
           context,
           () => changeLanguage(context),
         ),
         _buildSettings(
           AppSvgImages.help_ic,
-          'Help',
+          'help'.tr(),
           context,
           () => Navigator.push(
               context, MaterialPageRoute(builder: (_) => HelpScreen())),
         ),
         _buildSettings(
           AppSvgImages.logout_ic,
-          'Logout',
+          'logout'.tr(),
           context,
           () => logout(context),
         ),
@@ -74,10 +76,13 @@ class Settings extends StatelessWidget {
     );
   }
 
-  changeLanguage(context) => showDialog(
-        context: context,
-        builder: (_) => ChangeLanguageAlertDialog(),
-      );
+  changeLanguage(context) => showModalBottomSheet(
+      context: context, builder: (_) => LangWidget(profileProvider: model));
+
+  // showDialog(
+  //       context: context,
+  //       builder: (_) => ChangeLanguageAlertDialog(),
+  //     );
 
   logout(context) => showDialog(
         context: context,
