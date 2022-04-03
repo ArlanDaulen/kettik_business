@@ -30,25 +30,11 @@ class MyTourScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            padding: EdgeInsets.only(
-                                top: getProportionateScreenHeight(70)),
-                            width: model.size!.width,
-                            color: Color(0xffff8000),
-                            child: Text(
-                              "My tours",
-                              style: TextStyle(
-                                  color: AppColors.whiteColor,
-                                  fontSize: getProportionateScreenHeight(40),
-                                  fontWeight: FontWeight.w500),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: getProportionateScreenHeight(10),
                                 horizontal: getProportionateScreenWidth(30)),
-                            decoration:
-                                const BoxDecoration(color: Color(0xffff8000)),
+                            decoration: const BoxDecoration(
+                                color: AppColors.primaryColor),
                             child: TextFormField(
                               style: const TextStyle(color: AppColors.bgColor),
                               controller: model.searchController,
@@ -248,13 +234,13 @@ class MyTourScreen extends StatelessWidget {
                                                     SizedBox(
                                                       height:
                                                           getProportionateScreenHeight(
-                                                              7),
+                                                              15),
                                                     ),
                                                     Row(
                                                       children: [
                                                         SvgPicture.asset(
                                                             AppSvgImages
-                                                                .calendar_ic),
+                                                                .departure_date_ic),
                                                         SizedBox(
                                                             width:
                                                                 getProportionateScreenWidth(
@@ -268,7 +254,7 @@ class MyTourScreen extends StatelessWidget {
                                                     SizedBox(
                                                       height:
                                                           getProportionateScreenHeight(
-                                                              7),
+                                                              15),
                                                     ),
                                                     Row(
                                                       children: [
@@ -334,7 +320,7 @@ class MyTourScreen extends StatelessWidget {
                         AppSvgImages.add_tour_ic,
                         color: AppColors.whiteColor,
                       ),
-                      backgroundColor: Color(0xfffff8000),
+                      backgroundColor: Color.fromARGB(255, 107, 0, 194),
                     ),
                   ),
                 );

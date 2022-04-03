@@ -1,8 +1,14 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:intl/src/intl/date_format.dart';
+import 'package:http/http.dart' as http;
 
 class CreateTourProvider extends BaseBloc {
   TextEditingController titleController = TextEditingController();
@@ -11,6 +17,8 @@ class CreateTourProvider extends BaseBloc {
   List<TourDateAndCountPersonsModel> tourDateAndCountPersonsList = [];
 
   String city = "Алматы";
+
+  List<XFile>? images = [];
   List<String> cities = [
     "Алматы",
     "Астана",
@@ -26,14 +34,6 @@ class CreateTourProvider extends BaseBloc {
     "Крутой костер 🔥",
     "Вечерняя программа"
   ];
-  var testImages = [
-    "https://poehali.kz/upload/iblock/967/967f5166b65098f4aa8f0c918a155326.jpg",
-    "https://static.tildacdn.com/tild6233-3838-4738-b961-366635366463/412A8269_.JPG",
-    "https://avatars.mds.yandex.net/get-altay/1525683/2a0000016abd21f373347a5e15e4a92645cf/XXL",
-    "https://im0-tub-kz.yandex.net/i?id=52624fc5c5278486c8ab6b676e35ccd9-l&n=13",
-    "https://funart.pro/uploads/posts/2021-04/thumbs/1617302291_19-p-oboi-mertvoe-ozero-kazakhstan-21.jpg",
-    "https://adrenalinicsilence.kz/wp-content/uploads/2016/12/kolsaykayndy22.jpg",
-  ];
 
   Size? size;
 
@@ -43,6 +43,23 @@ class CreateTourProvider extends BaseBloc {
     SizeConfig().init(context);
     addTourDateAndCountPersonsToList();
     setLoading(false);
+  }
+
+  Future<void> uploadImage() async {
+    String url = "EbalIaTvoiRot.com";
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+    for (XFile xFile in images!) {
+      request.files.add(http.MultipartFile(
+          'image',
+          File(xFile.path).readAsBytes().asStream(),
+          File(xFile.path).lengthSync(),
+          filename: xFile.path.split("/").last));
+    }
+    var res = await request.send();
+
+    res.statusCode == 200
+        ? log("SUCCESS UPLOAD")
+        : log("FAILED statuc code is ${res.statusCode}");
   }
 
   getDateRangeOfTour(TourDateAndCountPersonsModel tourDateAndCountPersons) {
@@ -120,6 +137,74 @@ class CreateTourProvider extends BaseBloc {
   void deleteDateAndCountOfPersons(int index) {
     tourDateAndCountPersonsList.removeAt(index);
     notifyListeners();
+  }
+
+  loadImages(BuildContext context) async {
+    final ImagePicker _picker = ImagePicker();
+    var imagesWithoutCroppedList = await _picker.pickMultiImage();
+    if (imagesWithoutCroppedList != null) {
+      for (XFile xFile in imagesWithoutCroppedList) {
+        File f = await cropImage(File(xFile.path));
+
+        images!.add(XFile(f.path));
+      }
+    }
+
+    notifyListeners();
+  }
+
+  cropImage(File imageFile) async {
+    File? croppedFile = await ImageCropper().cropImage(
+      sourcePath: imageFile.path,
+      aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
+      androidUiSettings: const AndroidUiSettings(
+          toolbarTitle: 'Cropper',
+          toolbarColor: Colors.deepOrange,
+          toolbarWidgetColor: Colors.white,
+          initAspectRatio: CropAspectRatioPreset.original,
+          lockAspectRatio: false),
+      iosUiSettings: const IOSUiSettings(
+        minimumAspectRatio: 1.0,
+      ),
+    );
+    if (croppedFile != null) {
+      return croppedFile;
+    }
+    return null;
+  }
+
+  // addImages(BuildContext context) async {
+  //   final ImagePicker _picker = ImagePicker();
+  //   List<XFile>? additionalImages = await _picker.pickMultiImage();
+
+  //   if (additionalImages != null) {
+  //     additionalImages.forEach((element) {
+  //       images!.add(element);
+  //     });
+  //   }
+
+  //   notifyListeners();
+  // }
+
+  void clearImages() {
+    images!.clear();
+    notifyListeners();
+  }
+
+  void deleteImageByXFile(XFile xFile) {
+    images!.remove(xFile);
+    notifyListeners();
+  }
+
+  replaceImageByXFile(XFile xFileForDelete) async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? choosedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (choosedImage != null) {
+      File f = await cropImage(File(choosedImage.path));
+      images![images!.indexOf(xFileForDelete)] = XFile(f.path);
+      notifyListeners();
+    }
   }
 }
 

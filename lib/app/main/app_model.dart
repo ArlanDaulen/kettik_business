@@ -23,6 +23,7 @@ class MyAppModel extends BaseBloc {
 
   init() async {
     log('init called');
+
     // localization init
     await EasyLocalization.ensureInitialized();
     await checkOnboardinIsSkipped();

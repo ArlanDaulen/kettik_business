@@ -31,7 +31,6 @@ class ProfileProvider extends BaseBloc {
     SizeConfig().init(context);
 
     setLoading(false);
-    log(user.fullName!);
   }
 
   setCurrentCity(String city) {
