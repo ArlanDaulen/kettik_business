@@ -30,7 +30,6 @@ class ProfileProvider extends BaseBloc {
     setLoading(true);
     SizeConfig().init(context);
     setLoading(false);
-    log(user.fullName!);
   }
 
   setCurrentCity(String city) {
@@ -49,8 +48,6 @@ class ProfileProvider extends BaseBloc {
     );
     notifyListeners();
   }
-
-
 
   // Future pickImage(ImageSource source) async {
   //   try {
