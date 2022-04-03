@@ -8,11 +8,11 @@ import '../../../shared/theme.dart';
 class IndexProvider extends BaseBloc {
   int bottomIndex = 0;
   List<BottomNavigationBarItem>? items;
-  String currentTitle = 'Статистика';
+  String currentTitle = 'Statistics';
   final List<String> _titles = [
-    'Статистика',
-    'Мои туры',
-    'Профиль',
+    'Statistics',
+    'My tours',
+    'Profile',
   ];
 
   init(BuildContext context) {
@@ -30,7 +30,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(50),
         ),
-        label: 'Статистика',
+        label: 'Statistics',
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -43,7 +43,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(45),
         ),
-        label: 'Мои туры',
+        label: 'My tours',
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -56,7 +56,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(50),
         ),
-        label: 'Профиль',
+        label: 'Profile',
       ),
     ];
     setLoading(false);

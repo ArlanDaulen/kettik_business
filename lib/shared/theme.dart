@@ -15,6 +15,7 @@ class AppColors {
   static const Color profileInfoLinesColor = Color(0xffEFF2F7);
   static const Color inactiveColor = Color(0xffafb2b5);
   static const Color whiteColor = Colors.white;
+  static const Color greyColor = Color(0xffF8F8F8);
 
   ///[_Divider]
   static const Color dividerColor = Color(0xffE9E9E9);
@@ -24,7 +25,7 @@ class AppColors {
 
   ///[_Background Colors]
   static Color bgBlueColor = Color(0xff0D70E3).withOpacity(0.5);
-  static const Color bgColor = Color(0xffF7F7F7);
+  static const Color bgColor = Color(0xffF0F0F0);
 
   ///[_Whatsapp, Telegram]
   // static const Color whatsAppColor = Color(0xff55CB6D);
@@ -47,6 +48,52 @@ class AppSvgImages {
       'assets/images/svg/profile_chosen.svg';
   static const String avatar_ic = 'assets/images/svg/avatar.svg';
   static const String telegram_ic = 'assets/images/svg/telegram.svg';
+  static const String about_business_ic =
+      'assets/images/svg/about_business.svg';
+  static const String language_ic = 'assets/images/svg/language.svg';
+  static const String help_ic = 'assets/images/svg/help.svg';
+  static const String logout_ic = 'assets/images/svg/logout.svg';
+  static const String chosen_ic = 'assets/images/svg/chosen.svg';
+  static const String unchosen_ic = 'assets/images/svg/unchosen.svg';
+  static const String plus_ic = 'assets/images/svg/plus.svg';
+
+  static const String switch_on_ic = 'assets/images/svg/switch_on.svg';
+  static const String switch_off_ic = 'assets/images/svg/switch_off.svg';
+  static const String golden_star_ic = 'assets/images/svg/golden_star.svg';
+  static const String filter_ic = 'assets/images/svg/filter.svg';
+  static const String tuda_suda_ic = 'assets/images/svg/tuda_suda.svg';
+  static const String search_filter_ic = 'assets/images/svg/search_filter.svg';
+  static const String x_in_circle_ic = 'assets/images/svg/x_in_circle.svg';
+  static const String departure_date_ic =
+      'assets/images/svg/departure_date.svg';
+  static const String how_many_nights_ic =
+      'assets/images/svg/how_many_nights.svg';
+  static const String plane_ic = 'assets/images/svg/plane.svg';
+  static const String insurance_ic = 'assets/images/svg/insurance.svg';
+  static const String bus_ic = 'assets/images/svg/bus.svg';
+  static const String nutrition_ic = 'assets/images/svg/nutrition.svg';
+  static const String divan_ic = 'assets/images/svg/divan.svg';
+  static const String add_tour_ic = 'assets/icons/svg/add_tour.svg';
+  static const String line_ic = 'assets/icons/svg/ic_line.svg';
+
+  ///[_NavBar]
+
+  static const String minus_ic = 'assets/images/svg/minus.svg';
+  static const String email_ic = 'assets/images/svg/email.svg';
+  static const String telegram_dark_ic = 'assets/images/svg/telegram_dark.svg';
+  static const String whatsapp_dark_ic = 'assets/images/svg/whatsapp_dark.svg';
+  static const String person_ic = 'assets/images/svg/person.svg';
+  static const String web_ic = 'assets/images/svg/web.svg';
+  static const String phone_home_ic = 'assets/images/svg/phone_home.svg';
+  static const String location_ic = 'assets/images/svg/location.svg';
+  static const String calendar_ic = 'assets/images/svg/calendar.svg';
+  static const String all_tours_ic = 'assets/images/svg/all_tours.svg';
+  static const String ticket_ic = 'assets/images/svg/ticket.svg';
+  static const String star_ic = 'assets/images/svg/star.svg';
+  static const String group_ic = 'assets/images/svg/group.svg';
+  static const String ticket_dark_ic = 'assets/images/svg/ticket_dark.svg';
+  static const String phone_home_outlined_ic =
+      'assets/images/svg/phone_home_outlined.svg';
 }
 
 class AppRiveAnimations {
@@ -58,6 +105,7 @@ class AppRiveAnimations {
 }
 
 class AppPngPaths {
-  
-  static const String whatsapp_ic = 'assets/images/svg/wpp_logo.png';
+  static const String whatsapp_ic = 'assets/icons/png/wpp_logo.png';
+  static const String altym_emel_ic = 'assets/icons/png/altyn-emel.png';
+  static const String charyn_ic = 'assets/icons/png/charyn.png';
 }
