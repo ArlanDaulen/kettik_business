@@ -11,7 +11,6 @@ import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_contain.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
-import 'package:kettik_business/pages/my_tour/ui/add_place_2.0.dart';
 import 'package:kettik_business/pages/my_tour/ui/edit_images.dart';
 import 'package:kettik_business/pages/my_tour/ui/period_picker_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -41,7 +40,7 @@ class CreateTourScreen extends StatelessWidget {
                     },
                   ),
                   title: Text(
-                    "createTour".tr(),
+                    "сreateTour".tr(),
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 17,
@@ -248,7 +247,7 @@ class CreateTourScreen extends StatelessWidget {
                               ),
                               SizedBox(
                                   height: getProportionateScreenHeight(40)),
-                              Text("city".tr()),
+                              Text("Город".tr()),
                               DropdownButton(
                                 value: model.city,
                                 icon: const Icon(Icons.keyboard_arrow_down),
@@ -447,28 +446,13 @@ class CreateTourScreen extends StatelessWidget {
                               SizedBox(
                                   height: getProportionateScreenHeight(20)),
                               _addMoreDetailInfo(model, () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (_) => AddPlaceScreen(
-                                //               createTourProvider: model,
-                                //             )));
                                 Navigator.push(
-<<<<<<< HEAD
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => AddPlaceScreen(
                                               createTourProvider: model,
                                             )));
                               }, "addPlace".tr(), "description"),
-=======
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => AddPlaceScreen2(createTourProvider: model,),
-                                  ),
-                                );
-                              }, "Add place", "description"),
->>>>>>> eb0187db39bae27a653469a0923eda6bb7d1715c
 
                               SizedBox(
                                 height: getProportionateScreenHeight(40),
