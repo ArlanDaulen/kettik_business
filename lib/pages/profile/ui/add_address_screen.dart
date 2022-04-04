@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,9 +14,9 @@ class AddAddressScreen extends StatelessWidget {
   final OnAddressAdded onAddressAdded;
 
   List<String> titles = [
-    'Company address',
-    'Company phone',
-    'Website',
+    'companyAddress'.tr(),
+    'companyPhone'.tr(),
+    'website'.tr(),
   ];
 
   List<TextEditingController> controllers =
@@ -28,7 +29,7 @@ class AddAddressScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          title: 'Add contacts',
+          title: 'addContacts'.tr(),
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -38,7 +39,7 @@ class AddAddressScreen extends StatelessWidget {
             right: getProportionateScreenWidth(40),
           ),
           child: DefaultButton(
-            text: 'Save',
+            text: 'save'.tr(),
             press: () => Navigator.of(context).pop({
               onAddressAdded(controllers),
             }),

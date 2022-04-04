@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -14,11 +15,11 @@ class AddContactsScreen extends StatelessWidget {
   final OnContactAdded onContactAdded;
 
   List<String> titles = [
-    'E-mail',
-    'Surname',
-    'Name',
-    'Add Whatsapp number',
-    'Add Telegram number',
+    'email'.tr(),
+    'surname'.tr(),
+    'name'.tr(),
+    'addWhatsAppNumber'.tr(),
+    'addTelegramNumber'.tr(),
   ];
 
   List<TextEditingController> controllers =
@@ -31,7 +32,7 @@ class AddContactsScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          title: 'Add contacts',
+          title: 'addContacts'.tr(),
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -41,7 +42,7 @@ class AddContactsScreen extends StatelessWidget {
             right: getProportionateScreenWidth(40),
           ),
           child: DefaultButton(
-            text: 'Save',
+            text: 'save'.tr(),
             press: () => Navigator.of(context).pop({
               onContactAdded(controllers),
             }),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
@@ -60,7 +61,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'About business',
+        title: 'aboutBusiness'.tr(),
         isWithBackButton: true,
       ),
       body: Padding(
@@ -74,8 +75,8 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               height: getProportionateScreenHeight(30),
             ),
             _buildSections(
-              title: 'City',
-              text: currentCity == null ? 'Choose city' : currentCity!,
+              title: 'city'.tr(),
+              text: currentCity == null ? 'chooseCity'.tr() : currentCity!,
               page: ChooseCityScreen(
                 profileProvider: widget.model,
                 onCityChosen: _onCityChosen,
@@ -86,9 +87,9 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               height: getProportionateScreenHeight(20),
             ),
             _buildSections(
-              title: 'Description',
+              title: 'description'.tr(),
               text: currentDescription == null
-                  ? 'Add description'
+                  ? 'addDescription'.tr()
                   : currentDescription!,
               page: AddDescriptionScreen(
                 onDescriptionAdded: _onDescriptionAdded,
@@ -172,7 +173,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Contacts',
+              'contacts'.tr(),
               style: TextStyle(
                 fontSize: getProportionateScreenHeight(32),
                 fontWeight: FontWeight.w500,
@@ -183,7 +184,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
             ),
             contactControllers == null
                 ? Text(
-                    'Add contacts',
+                    'addContacts'.tr(),
                     style: TextStyle(
                       fontSize: getProportionateScreenHeight(28),
                       fontWeight: FontWeight.w500,
@@ -251,7 +252,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Contacts',
+                'companyContacts'.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                   fontWeight: FontWeight.w500,
@@ -262,7 +263,7 @@ class _AboutBusinessScreenState extends State<AboutBusinessScreen> {
               ),
               addressControllers == null
                   ? Text(
-                      'Add address',
+                      'addAddress'.tr(),
                       style: TextStyle(
                         fontSize: getProportionateScreenHeight(28),
                         fontWeight: FontWeight.w500,

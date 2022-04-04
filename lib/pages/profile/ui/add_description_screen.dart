@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
@@ -19,7 +20,7 @@ class AddDescriptionScreen extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: CustomAppBar(
-          title: 'Add description',
+          title: 'addDescription'.tr(),
           isWithBackButton: true,
         ),
         bottomSheet: Padding(
@@ -28,7 +29,7 @@ class AddDescriptionScreen extends StatelessWidget {
             vertical: getProportionateScreenHeight(30),
           ),
           child: DefaultButton(
-            text: 'Save',
+            text: 'save'.tr(),
             press: () => Navigator.of(context)
                 .pop({onDescriptionAdded(controller.text)}),
           ),
@@ -60,7 +61,7 @@ class AddDescriptionScreen extends StatelessWidget {
                     fontSize: getProportionateScreenHeight(28),
                   ),
                   decoration: InputDecoration(
-                    hintText: 'Write about your company',
+                    hintText: 'writeAboutYourCompany'.tr(),
                     hintStyle: TextStyle(
                       fontSize: getProportionateScreenHeight(28),
                     ),

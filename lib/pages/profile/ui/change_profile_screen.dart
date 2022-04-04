@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -29,10 +30,10 @@ class ChangeProfileScreen extends StatefulWidget {
 
 class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
   List<String> titles = [
-    'Name',
-    'E-mail',
-    'Telegram',
-    'What\'sapp',
+    'name'.tr(),
+    'email'.tr(),
+    'telegram'.tr(),
+    'whatsapp'.tr(),
   ];
 
   List<TextEditingController> controllers =
@@ -58,7 +59,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: CustomAppBar(
-        title: 'Edit Profile',
+        title: 'editProfile'.tr(),
         isWithBackButton: true,
       ),
       bottomSheet: Padding(
@@ -67,7 +68,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
           vertical: getProportionateScreenHeight(30),
         ),
         child: DefaultButton(
-          text: 'Save',
+          text: 'save'.tr(),
           press: () => Navigator.of(context).pop({
             widget.onProfileChanged,
             _checkChanges(),
@@ -113,7 +114,7 @@ class _ChangeProfileScreenState extends State<ChangeProfileScreen> {
                                 onImagePicked: _onImagePicked);
                           }),
                       child: DefaultText(
-                        text: 'Choose photo',
+                        text: 'choosePhoto'.tr(),
                         color: AppColors.primaryColor,
                         fontSize: 28,
                       )),

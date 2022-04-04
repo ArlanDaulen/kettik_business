@@ -88,7 +88,7 @@ class Settings extends StatelessWidget {
         context: context,
         builder: (_) => CupertinoAlertDialog(
           title: Text(
-            'Are you sure you want to log out of your profile?',
+            'logOutProfileQuestion'.tr(),
             style: TextStyle(
               fontSize: getProportionateScreenHeight(36),
             ),
@@ -96,7 +96,7 @@ class Settings extends StatelessWidget {
           actions: [
             CupertinoDialogAction(
               child: Text(
-                'No',
+                'no'.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                 ),
@@ -106,7 +106,7 @@ class Settings extends StatelessWidget {
             CupertinoDialogAction(
               isDefaultAction: true,
               child: Text(
-                'Yes',
+                'yes'.tr(),
                 style: TextStyle(
                   fontSize: getProportionateScreenHeight(32),
                 ),

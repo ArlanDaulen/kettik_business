@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/my_tour_provider.dart';
@@ -45,15 +46,15 @@ class SortToursBottomSheet extends StatelessWidget {
               separatorBuilder: (context, index) =>
                   const Divider(color: AppColors.primaryColor),
               itemCount: model.filterTypesList.length),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           DefaultButton(
-            text: "Выбрать",
+            text: "choose".tr(),
             width: model.size!.width * 0.8,
             press: () {},
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ],
