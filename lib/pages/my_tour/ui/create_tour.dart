@@ -10,6 +10,7 @@ import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_contain.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_place_2.0.dart';
 import 'package:kettik_business/pages/my_tour/ui/edit_images.dart';
 import 'package:kettik_business/pages/my_tour/ui/period_picker_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -444,12 +445,18 @@ class CreateTourScreen extends StatelessWidget {
                               SizedBox(
                                   height: getProportionateScreenHeight(20)),
                               _addMoreDetailInfo(model, () {
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (_) => AddPlaceScreen(
+                                //               createTourProvider: model,
+                                //             )));
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => AddPlaceScreen(
-                                              createTourProvider: model,
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => AddPlaceScreen2(createTourProvider: model,),
+                                  ),
+                                );
                               }, "Add place", "description"),
 
                               SizedBox(

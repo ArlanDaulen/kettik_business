@@ -3,6 +3,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/add_place_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
+import 'package:kettik_business/pages/my_tour/ui/map.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
@@ -22,7 +23,7 @@ class AddPlaceScreen extends StatelessWidget {
                     appBar: AppBar(
                       backgroundColor: AppColors.primaryColor.withOpacity(0.8),
                       title: const Text(
-                        "Tour's contains",
+                        "Tour's places",
                         style: TextStyle(fontSize: 19),
                       ),
                       actions: [
@@ -36,6 +37,7 @@ class AddPlaceScreen extends StatelessWidget {
                         )
                       ],
                     ),
+                    bottomSheet: _addItemOfContainWidget(model),
                     body: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Container(
@@ -75,7 +77,6 @@ class AddPlaceScreen extends StatelessWidget {
                                 itemCount: model.placeList.length),
                             _addPoinOnMap(model),
                             SizedBox(height: getProportionateScreenHeight(50)),
-                            _addItemOfContainWidget(model)
                           ],
                         ),
                       ),
@@ -89,13 +90,10 @@ class AddPlaceScreen extends StatelessWidget {
   Widget _addPoinOnMap(AddPlaceProvider model) {
     return Container(
       width: model.size!.width,
-      height: 300,
+      height: model.size!.height,
       decoration: BoxDecoration(
         color: AppColors.bgBlueColor,
         borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Center(
-        child: Text("HERE WILL BE MAP"),
       ),
     );
   }
