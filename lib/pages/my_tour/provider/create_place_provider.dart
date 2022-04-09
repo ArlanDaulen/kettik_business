@@ -8,10 +8,15 @@ import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
-class AddPlaceProvider2 extends BaseBloc {
+class CreatePlaceProvider extends BaseBloc {
   Size? size;
   List<PlaceModel> placeList = [];
   TextEditingController controller = TextEditingController();
+
+  final initialCameraPosition = const CameraPosition(
+    target: LatLng(43.238949, 76.889709),
+    zoom: 10.5,
+  );
 
   GoogleMapController? googleMapController;
   Set<Marker> markers = <Marker>{};

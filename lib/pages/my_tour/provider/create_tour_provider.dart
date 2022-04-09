@@ -26,7 +26,13 @@ class CreateTourProvider extends BaseBloc {
     "Кызылорда",
   ];
 
-  List<PlaceModel> placesList = [];
+  List<PlaceModel> placesList = [
+    PlaceModel(
+        name: "MyPoint",
+        lattitude: "43.238949",
+        longitude: "76.889709",
+        isMain: false)
+  ];
 
   List<String> containList = [
     "Услуги профессионального гида",

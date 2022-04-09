@@ -32,7 +32,6 @@
     "from": "От",
     "to": "Куда?",
     "choose_where": "Рекомендации",
-
     "totalTours":"Всего туров",
     "numberOfTickets":"Количество билетов",
     "ticketsSold":"Билетов продано",
@@ -52,7 +51,6 @@
     "contactTheClient":"Связаться с клиентом",
     "write":"Написать",
     "contact":"Связаться с",
-
     "nameOfTour":"Название тура",
     "fromCheapest":"Сначала дешевые",
     "fromHottest":"Сначала горячие",
@@ -71,7 +69,6 @@
     "addService":"Добавить услугу",
     "ticketPrice":"Цена билета",
     "create":"Создать",
-
     "chaange":"Изменить",
     "aboutBusiness":"О бизнесе",
     "help":"Помощь",

@@ -3,7 +3,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/add_place_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
-import 'package:kettik_business/pages/my_tour/ui/map.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_place.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
@@ -37,7 +37,6 @@ class AddPlaceScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    bottomSheet: _addItemOfContainWidget(model),
                     body: SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Container(
@@ -45,7 +44,18 @@ class AddPlaceScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             vertical: 30, horizontal: 20),
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            _addItemOfContainWidget(model),
+
+                            //TODO here tours by search
+                            const Divider(
+                              thickness: 2,
+                              color: AppColors.primaryColor,
+                            ),
+                            const Text("Places in my Tour"),
                             ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
@@ -75,9 +85,33 @@ class AddPlaceScreen extends StatelessWidget {
                                 separatorBuilder: (context, index) => SizedBox(
                                     height: getProportionateScreenHeight(20)),
                                 itemCount: model.placeList.length),
-                            _addPoinOnMap(model),
                             SizedBox(height: getProportionateScreenHeight(50)),
                           ],
+                        ),
+                      ),
+                    ),
+                    floatingActionButtonLocation:
+                        FloatingActionButtonLocation.centerDocked,
+                    floatingActionButton: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => CreatePlaceScreen(
+                                      createTourProvider: createTourProvider,
+                                    )));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                            color: AppColors.systemBlackColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Text(
+                          "Create place",
+                          style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
@@ -87,45 +121,39 @@ class AddPlaceScreen extends StatelessWidget {
         model: AddPlaceProvider());
   }
 
-  Widget _addPoinOnMap(AddPlaceProvider model) {
-    return Container(
-      width: model.size!.width,
-      height: model.size!.height,
-      decoration: BoxDecoration(
-        color: AppColors.bgBlueColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-    );
-  }
-
   Widget _addItemOfContainWidget(AddPlaceProvider model) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: model.size!.width * 0.75,
-          child: TextField(
-            controller: model.controller,
-            decoration: const InputDecoration(
-                hintText: "Additional place name in Tour",
-                border: OutlineInputBorder()),
-          ),
-        ),
-        SizedBox(
-          child: IconButton(
-            icon: Icon(
-              Icons.add_box,
-              color: AppColors.bgBlueColor,
-              size: 30,
+    return Container(
+      color: AppColors.systemDarkGrayColor.withOpacity(0.005),
+      width: model.size!.width,
+      padding: EdgeInsets.only(top: 10, bottom: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: model.size!.width * 0.8,
+            child: TextField(
+              controller: model.controller,
+              decoration: const InputDecoration(
+                  hintText: "Additional place name in Tour",
+                  border: OutlineInputBorder()),
             ),
-            onPressed: () {
-              model.addItemToContainList();
-            },
           ),
-        )
-      ],
+          // SizedBox(
+          //   child: IconButton(
+          //     icon: Icon(
+          //       Icons.add_box,
+          //       color: AppColors.bgBlueColor,
+          //       size: 30,
+          //     ),
+          //     onPressed: () {
+          //       model.addItemToContainList();
+          //     },
+          //   ),
+          // )
+        ],
+      ),
     );
   }
 }
