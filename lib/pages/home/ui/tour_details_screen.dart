@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/pages/home/ui/contact_with_client_screen.dart';
@@ -116,7 +117,7 @@ class TourDetailsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(10)),
                 child: Text(
-                  'List of clients',
+                  'listOfClients'.tr(),
                   style: TextStyle(
                     fontSize: getProportionateScreenHeight(36),
                     fontWeight: FontWeight.bold,

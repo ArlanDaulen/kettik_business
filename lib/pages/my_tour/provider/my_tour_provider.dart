@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -14,10 +15,10 @@ class MyTourProvider extends BaseBloc {
   String filterType = "";
   String filterTypeGroup = "";
   List<String> filterTypesList = [
-    "Сначала горячие",
-    "Сначала новые",
-    "От дешевых к дорогим",
-    "От дорогих к дешевым",
+    "fromHottest".tr(),
+    "fromNewest".tr(),
+    "fromCheapestToExpensive".tr(),
+    "fromExpensiveToCheapest".tr(),
   ];
 
   init(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -13,7 +14,7 @@ class ContactWithClientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Contact a client',
+        title: 'contactTheClient'.tr(),
         isWithBackButton: true,
       ),
       body: Padding(
@@ -47,7 +48,7 @@ class ContactWithClientScreen extends StatelessWidget {
                     height: getProportionateScreenHeight(10),
                   ),
                   Text(
-                    'Amazon, Africa',
+                    'Amazon, South America',
                     style:
                         TextStyle(fontSize: getProportionateScreenHeight(24)),
                   ),
@@ -58,7 +59,7 @@ class ContactWithClientScreen extends StatelessWidget {
               height: getProportionateScreenHeight(20),
             ),
             DefaultText(
-              text: 'Write',
+              text: 'write'.tr(),
               fontSize: 28,
             ),
             SizedBox(
@@ -70,7 +71,6 @@ class ContactWithClientScreen extends StatelessWidget {
                   SvgPicture.asset(
                     AppSvgImages.telegram_ic,
                     width: getProportionateScreenWidth(75),
-                    
                   ),
                   'https://t.me/Spatay7',
                 ),
@@ -91,7 +91,7 @@ class ContactWithClientScreen extends StatelessWidget {
               height: getProportionateScreenHeight(20),
             ),
             DefaultText(
-              text: 'Contact Sparta',
+              text: 'contact'.tr() + ' Sparta',
               fontSize: 28,
             ),
             SizedBox(

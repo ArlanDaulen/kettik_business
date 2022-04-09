@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
@@ -41,7 +42,7 @@ class MyTourScreen extends StatelessWidget {
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 fillColor: AppColors.bgColor,
-                                hintText: "Name of tour",
+                                hintText: 'nameOfTour', // add tr
                                 hintStyle: TextStyle(color: AppColors.bgColor),
                                 prefixIcon: Icon(Icons.search,
                                     color: AppColors.whiteColor),
@@ -87,7 +88,7 @@ class MyTourScreen extends StatelessWidget {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "Сначала дешевые",
+                                          "fromCheapest".tr(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize:

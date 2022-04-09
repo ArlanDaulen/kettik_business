@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
@@ -30,7 +31,7 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: CustomAppBar(
-            title: 'Choose city',
+            title: 'chooseCity'.tr(),
             isWithBackButton: true,
           ),
           bottomSheet: Padding(
@@ -39,7 +40,7 @@ class _ChooseCityScreenState extends State<ChooseCityScreen> {
               vertical: getProportionateScreenHeight(20),
             ),
             child: DefaultButton(
-              text: 'Save',
+              text: 'save'.tr(),
               press: () {
                 // model.saveSelectedCity();
                 Navigator.of(context)

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -75,7 +76,7 @@ class AvatarBottomSheet extends StatelessWidget {
                       vertical: getProportionateScreenHeight(20),
                     ),
                     child: DefaultText(
-                      text: 'Take a photo',
+                      text: 'takePhoto'.tr(),
                       color: AppColors.primaryColor,
                       fontSize: 32,
                     ),
@@ -94,7 +95,7 @@ class AvatarBottomSheet extends StatelessWidget {
                       vertical: getProportionateScreenHeight(20),
                     ),
                     child: DefaultText(
-                      text: 'Open gallery',
+                      text: 'openGallery'.tr(),
                       color: AppColors.primaryColor,
                       fontSize: 32,
                     ),
@@ -113,7 +114,7 @@ class AvatarBottomSheet extends StatelessWidget {
                             vertical: getProportionateScreenHeight(20),
                           ),
                           child: DefaultText(
-                            text: 'Delete photo',
+                            text: 'deletePhoto'.tr(),
                             color: AppColors.primaryColor,
                             fontSize: 32,
                           ),
@@ -138,7 +139,7 @@ class AvatarBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: DefaultText(
-                text: 'Cancel',
+                text: 'cancel'.tr(),
                 color: AppColors.primaryColor,
                 fontSize: 32,
               ),

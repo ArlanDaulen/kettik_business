@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -38,9 +39,9 @@ class CreateTourScreen extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   ),
-                  title: const Text(
-                    "Create tour",
-                    style: TextStyle(
+                  title: Text(
+                    "сreateTour".tr(),
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                     ),
@@ -78,9 +79,9 @@ class CreateTourScreen extends StatelessWidget {
                                             spreadRadius: 3)
                                       ],
                                       borderRadius: BorderRadius.circular(20)),
-                                  child: const Text(
-                                    "Add images",
-                                    style: TextStyle(
+                                  child: Text(
+                                    "addImages".tr(),
+                                    style: const TextStyle(
                                         color: AppColors.systemBlackColor,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 18),
@@ -227,7 +228,7 @@ class CreateTourScreen extends StatelessWidget {
                               TextFormField(
                                 controller: model.titleController,
                                 decoration: InputDecoration(
-                                    label: const Text("Title"),
+                                    label: Text("title".tr()),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     )),
@@ -239,14 +240,14 @@ class CreateTourScreen extends StatelessWidget {
                                 minLines: 5,
                                 maxLines: 15,
                                 decoration: InputDecoration(
-                                    label: const Text("Description"),
+                                    label: Text("description".tr()),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     )),
                               ),
                               SizedBox(
                                   height: getProportionateScreenHeight(40)),
-                              const Text("Город"),
+                              Text("Город".tr()),
                               DropdownButton(
                                 value: model.city,
                                 icon: const Icon(Icons.keyboard_arrow_down),
@@ -419,15 +420,16 @@ class CreateTourScreen extends StatelessWidget {
                                                     20)),
                                         _addMoreDetailInfo(model, () {
                                           model.addMoreDatesForTours();
-                                        }, "Add more", ""),
+                                        }, "addMore".tr(), ""),
                                       ],
                                     ),
 
                               SizedBox(
                                   height: getProportionateScreenHeight(40)),
-                              const Text(
-                                "Additional locations",
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                              Text(
+                                "additionalLocations".tr(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700),
                               ),
                               model.placesList.isEmpty
                                   ? const Text("- Empty list")
@@ -450,15 +452,16 @@ class CreateTourScreen extends StatelessWidget {
                                         builder: (_) => AddPlaceScreen(
                                               createTourProvider: model,
                                             )));
-                              }, "Add place", "description"),
+                              }, "addPlace".tr(), "description"),
 
                               SizedBox(
                                 height: getProportionateScreenHeight(40),
                               ),
 
-                              const Text(
-                                "Contain",
-                                style: TextStyle(fontWeight: FontWeight.w700),
+                              Text(
+                                "tourServices".tr(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700),
                               ),
                               model.containList.isEmpty
                                   ? const Text("- Empty list")
@@ -481,13 +484,13 @@ class CreateTourScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder: (context) => AddContainScreen(
                                             createTourProvider: model)));
-                              }, "Add contain", ""),
+                              }, "addService".tr(), ""),
 
                               SizedBox(
                                 height: getProportionateScreenHeight(50),
                               ),
                               //price double
-                              const Text("Ticket's price"),
+                              Text("ticketPrice".tr()),
                               SizedBox(
                                 height: getProportionateScreenHeight(5),
                               ),
@@ -508,7 +511,7 @@ class CreateTourScreen extends StatelessWidget {
 
                               DefaultButton(
                                 press: () {},
-                                text: "Create",
+                                text: "create".tr(),
                               ),
                               SizedBox(
                                 height: getProportionateScreenHeight(30),

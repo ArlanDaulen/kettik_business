@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -38,7 +39,7 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Help',
+        title: 'help'.tr(),
         isWithBackButton: true,
       ),
       body: Padding(
@@ -51,7 +52,7 @@ class _HelpScreenState extends State<HelpScreen> {
               height: getProportionateScreenHeight(30),
             ),
             Text(
-              'Frequently asked Questions',
+              'frequentlyAskedQuestions'.tr(),
               style: TextStyle(
                 fontSize: getProportionateScreenHeight(42),
                 fontWeight: FontWeight.w400,

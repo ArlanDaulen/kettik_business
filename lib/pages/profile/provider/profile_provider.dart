@@ -29,6 +29,7 @@ class ProfileProvider extends BaseBloc {
   init(BuildContext context) {
     setLoading(true);
     SizeConfig().init(context);
+
     setLoading(false);
   }
 

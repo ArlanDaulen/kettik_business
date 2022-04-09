@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/base/base_bloc.dart';
@@ -10,9 +11,9 @@ class IndexProvider extends BaseBloc {
   List<BottomNavigationBarItem>? items;
   String currentTitle = 'Statistics';
   final List<String> _titles = [
-    'Statistics',
-    'My tours',
-    'Profile',
+    'statistics'.tr(),
+    'myTours'.tr(),
+    'profile'.tr(),
   ];
 
   init(BuildContext context) {
