@@ -1,4 +1,4 @@
-package com.example.kettik_business
+package com.business.kettik
 
 import io.flutter.embedding.android.FlutterActivity
 
