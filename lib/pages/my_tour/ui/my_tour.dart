@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/my_tour_provider.dart';
-import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
-import 'package:kettik_business/pages/my_tour/ui/sort_tours_bottom_sheet.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
+import 'package:kettik_business/pages/my_tour/ui/tour_detail.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
@@ -31,25 +31,70 @@ class MyTourScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: getProportionateScreenHeight(10),
-                                horizontal: getProportionateScreenWidth(30)),
-                            decoration: const BoxDecoration(
-                                color: AppColors.primaryColor),
-                            child: TextFormField(
-                              style: const TextStyle(color: AppColors.bgColor),
-                              controller: model.searchController,
-                              decoration: const InputDecoration(
-                                border: InputBorder.none,
-                                fillColor: AppColors.bgColor,
-                                hintText: 'nameOfTour', // add tr
-                                hintStyle: TextStyle(color: AppColors.bgColor),
-                                prefixIcon: Icon(Icons.search,
-                                    color: AppColors.whiteColor),
-                              ),
-                              onChanged: (value) {
-                                //TODO get request
-                              },
+                            padding: EdgeInsets.only(
+                              top: getProportionateScreenHeight(120),
+                              bottom: getProportionateScreenHeight(20),
+                              right: getProportionateScreenWidth(30),
+                              left: getProportionateScreenWidth(30),
+                            ),
+                            decoration:
+                                BoxDecoration(color: Colors.white, boxShadow: [
+                              BoxShadow(
+                                  offset: const Offset(1, 1),
+                                  color: AppColors.systemBlackColor
+                                      .withOpacity(0.15),
+                                  blurRadius: 3,
+                                  spreadRadius: 3)
+                            ]),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Туры",
+                                  style: TextStyle(
+                                      color: AppColors.systemBlackColor
+                                          .withOpacity(0.95),
+                                      fontSize: 18),
+                                ),
+                                SizedBox(
+                                  height: getProportionateScreenHeight(30),
+                                ),
+                                TextFormField(
+                                  style: const TextStyle(
+                                      color: AppColors.systemBlackColor),
+                                  controller: model.searchController,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      fillColor: AppColors.systemBlackColor
+                                          .withOpacity(0.9),
+                                      hintText: "searchTours".tr(),
+                                      hintStyle: TextStyle(
+                                          color: AppColors.systemBlackColor
+                                              .withOpacity(0.9)),
+                                      prefixIcon: Icon(Icons.search,
+                                          color: AppColors.systemBlackColor
+                                              .withOpacity(0.9)),
+                                      suffixIcon: model.isSearching
+                                          ? TextButton(
+                                              onPressed: () {
+                                                model.cancelSearching(context);
+                                              },
+                                              child: const Text(
+                                                "Отменить",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.primaryColor),
+                                              ),
+                                            )
+                                          : const SizedBox()),
+                                  onChanged: (value) async {
+                                    await model.searchTourByName(
+                                        context, value);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                           Container(
@@ -62,52 +107,6 @@ class MyTourScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                        context: context,
-                                        builder: (context) {
-                                          return SortToursBottomSheet(
-                                              model: model);
-                                        });
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            getProportionateScreenWidth(15),
-                                        vertical:
-                                            getProportionateScreenHeight(24)),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: AppColors.whiteColor),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "fromCheapest".tr(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize:
-                                                  getProportionateScreenHeight(
-                                                      30),
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        SizedBox(
-                                            width: getProportionateScreenWidth(
-                                                10)),
-                                        Icon(
-                                          Icons.arrow_forward_ios,
-                                          size:
-                                              getProportionateScreenHeight(40),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
                                 SizedBox(
                                   height: getProportionateScreenHeight(30),
                                 ),
@@ -117,179 +116,194 @@ class MyTourScreen extends StatelessWidget {
                                   physics: const BouncingScrollPhysics(),
                                   itemCount: model.tourList.length,
                                   itemBuilder: ((context, index) {
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                          color: AppColors.whiteColor,
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                offset: Offset(0, 3),
-                                                color: AppColors
-                                                    .systemDarkGrayColor,
-                                                blurRadius: 5,
-                                                spreadRadius: 0.1)
-                                          ]),
-                                      width: model.size!.width,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              //imagecontainer
-                                              SizedBox(
-                                                width: model.size!.width,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    "https://www.remotelands.com/storage/media/396/responsive-images/b140811017___banner-size_1920_940.jpg",
-                                                    fit: BoxFit.fill,
+                                    return InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) =>
+                                                    TourDetailScreen(id: 1)));
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: AppColors.whiteColor,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  offset: Offset(0, 3),
+                                                  color: AppColors
+                                                      .systemDarkGrayColor,
+                                                  blurRadius: 5,
+                                                  spreadRadius: 0.1)
+                                            ]),
+                                        width: model.size!.width,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                //imagecontainer
+                                                SizedBox(
+                                                  width: model.size!.width,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      "https://www.remotelands.com/storage/media/396/responsive-images/b140811017___banner-size_1920_940.jpg",
+                                                      fit: BoxFit.fill,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              // info {rating, dates,city}
-                                              Container(
-                                                width: model.size!.width,
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical:
-                                                        getProportionateScreenHeight(
-                                                            20),
-                                                    horizontal:
-                                                        getProportionateScreenWidth(
-                                                            20)),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      model.tourList[index]
-                                                              .name ??
-                                                          "",
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              getProportionateScreenHeight(
-                                                                  36),
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    Text(
-                                                      model.tourList[index]
-                                                              .city ??
-                                                          "",
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              getProportionateScreenHeight(
-                                                                  25),
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
+                                                // info {rating, dates,city}
+                                                Container(
+                                                  width: model.size!.width,
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical:
                                                           getProportionateScreenHeight(
-                                                              7),
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.symmetric(
-                                                          vertical:
-                                                              getProportionateScreenHeight(
-                                                                  10),
-                                                          horizontal:
-                                                              getProportionateScreenWidth(
-                                                                  15)),
-                                                      decoration: BoxDecoration(
-                                                          color: AppColors
-                                                              .primaryColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                      child: Text(
+                                                              20),
+                                                      horizontal:
+                                                          getProportionateScreenWidth(
+                                                              20)),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
                                                         model.tourList[index]
-                                                            .rating
-                                                            .toString(),
+                                                                .name ??
+                                                            "",
                                                         style: TextStyle(
                                                             fontSize:
                                                                 getProportionateScreenHeight(
-                                                                    30),
+                                                                    36),
                                                             fontWeight:
-                                                                FontWeight.w600,
-                                                            color: AppColors
-                                                                .whiteColor),
+                                                                FontWeight
+                                                                    .w600),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          getProportionateScreenHeight(
-                                                              15),
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                            AppSvgImages
-                                                                .departure_date_ic),
-                                                        SizedBox(
-                                                            width:
-                                                                getProportionateScreenWidth(
-                                                                    20)),
-                                                        Text(model
-                                                                .tourList[index]
-                                                                .timeRange ??
-                                                            ""),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          getProportionateScreenHeight(
-                                                              15),
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        const Icon(Icons.group),
-                                                        SizedBox(
-                                                            width:
-                                                                getProportionateScreenWidth(
-                                                                    20)),
-                                                        Text(model
-                                                            .tourList[index]
-                                                            .countOfPlaces!
-                                                            .toString()),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          getProportionateScreenHeight(
-                                                              10),
-                                                    ),
-                                                    model.getShortText(
+                                                      Text(
                                                         model.tourList[index]
-                                                            .description!,
-                                                        index),
-                                                    SizedBox(
-                                                      height:
-                                                          getProportionateScreenHeight(
-                                                              20),
-                                                    )
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
+                                                                .city ??
+                                                            "",
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                                getProportionateScreenHeight(
+                                                                    25),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            getProportionateScreenHeight(
+                                                                7),
+                                                      ),
+                                                      Container(
+                                                        padding: EdgeInsets.symmetric(
+                                                            vertical:
+                                                                getProportionateScreenHeight(
+                                                                    10),
+                                                            horizontal:
+                                                                getProportionateScreenWidth(
+                                                                    15)),
+                                                        decoration: BoxDecoration(
+                                                            color: AppColors
+                                                                .primaryColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                        child: Text(
+                                                          model.tourList[index]
+                                                              .rating
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  getProportionateScreenHeight(
+                                                                      30),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: AppColors
+                                                                  .whiteColor),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            getProportionateScreenHeight(
+                                                                15),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                              AppSvgImages
+                                                                  .departure_date_ic),
+                                                          SizedBox(
+                                                              width:
+                                                                  getProportionateScreenWidth(
+                                                                      20)),
+                                                          Text(model
+                                                                  .tourList[
+                                                                      index]
+                                                                  .timeRange ??
+                                                              ""),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            getProportionateScreenHeight(
+                                                                15),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          const Icon(
+                                                              Icons.group),
+                                                          SizedBox(
+                                                              width:
+                                                                  getProportionateScreenWidth(
+                                                                      20)),
+                                                          Text(model
+                                                              .tourList[index]
+                                                              .countOfPlaces!
+                                                              .toString()),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            getProportionateScreenHeight(
+                                                                10),
+                                                      ),
+                                                      model.getShortText(
+                                                          model.tourList[index]
+                                                              .description!,
+                                                          index),
+                                                      SizedBox(
+                                                        height:
+                                                            getProportionateScreenHeight(
+                                                                20),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     );
                                   }),
@@ -314,8 +328,7 @@ class MyTourScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const CreateTourScreen()));
+                                builder: (context) => AddPlaceScreen()));
                       },
                       child: SvgPicture.asset(
                         AppSvgImages.add_tour_ic,

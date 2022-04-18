@@ -27,7 +27,7 @@
   "apply": "apply",
   "skip": "Skip",
   "choose": "Choose",
-  "searchTours": "Search tours",
+  "searchTours": "Search tour",
   "recomendation": "Recomandation",
   "from": "From",
   "to": "to?",
@@ -52,7 +52,7 @@
   "contactTheClient":"Contact the client",
   "write":"Write",
   "contact":"Contact",
-
+  "сreateTour":"Create Tour",
   "nameOfTour":"Name of tour",
   "fromCheapest":"From cheapest",
   "fromHottest":"From hottest",

@@ -5,13 +5,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/my_tour/provider/add_place_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
 class CreatePlaceProvider extends BaseBloc {
   Size? size;
-  List<PlaceModel> placeList = [];
-  TextEditingController controller = TextEditingController();
+  PlaceModel? placeModel;
+  TextEditingController placeNameContoller = TextEditingController();
 
   final initialCameraPosition = const CameraPosition(
     target: LatLng(43.238949, 76.889709),
@@ -24,53 +25,36 @@ class CreatePlaceProvider extends BaseBloc {
   LatLng? position;
   bool isDeleteMode = false;
 
-  init(BuildContext context, CreateTourProvider createTourProvider) {
+  init(BuildContext context, AddPlaceProvider addPlaceProvider) {
     setLoading(true);
     size = MediaQuery.of(context).size;
-    placeList = createTourProvider.placesList;
-    for (var e in placeList) {
-      Marker m = Marker(
-        markerId: MarkerId(e.name!),
-        position: LatLng(
-          double.parse(e.lattitude!),
-          double.parse(e.longitude!),
-        ),
-      );
-      markers.add(m);
-    }
     SizeConfig().init(context);
     myFocusNode = FocusNode();
     setLoading(false);
   }
 
   addPlace() {
+    log("add marker");
     markers.add(
       Marker(
-        markerId: MarkerId(controller.text),
+        markerId: MarkerId(placeNameContoller.text),
         icon: BitmapDescriptor.defaultMarker,
         position: position!,
       ),
     );
     myFocusNode!.unfocus();
-    controller.clear();
+    placeNameContoller.clear();
     notifyListeners();
   }
 
-  void save(BuildContext context, CreateTourProvider createTourProvider) {
-    placeList.clear();
-    for (var e in markers) {
-      PlaceModel p = PlaceModel(
-        name: e.markerId.value,
-        lattitude: e.position.latitude.toString(),
-        longitude: e.position.longitude.toString(),
-        isMain: false,
-      );
-      placeList.add(p);
+  void save(BuildContext context, AddPlaceProvider addPlaceProvider) {
+    if (markers.isEmpty ||
+        placeModel == null ||
+        placeNameContoller.text.isEmpty) {
+    } else {
+      addPlaceProvider.addPlaceToPlaceList(placeModel!);
       notifyListeners();
     }
-    if (markers.isEmpty) placeList.clear();
-    notifyListeners();
-    createTourProvider.setPlacesList(placeList);
     Navigator.pop(context);
   }
 

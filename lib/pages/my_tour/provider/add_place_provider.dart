@@ -1,35 +1,25 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
-import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
 class AddPlaceProvider extends BaseBloc {
   Size? size;
   List<PlaceModel> placeList = [];
   TextEditingController controller = TextEditingController();
-
-  init(BuildContext context, CreateTourProvider createTourProvider) {
+  List<bool> isChoosedTestList = [];
+  init(BuildContext context) {
     setLoading(true);
     size = MediaQuery.of(context).size;
-    placeList = createTourProvider.placesList;
+    isChoosedTestList = List.generate(testPlaces.length, (index) => false);
     SizeConfig().init(context);
     setLoading(false);
   }
 
-  void addItemToContainList() {
-    if (controller.text.isNotEmpty) {
-      PlaceModel p = PlaceModel(
-          name: controller.text,
-          lattitude: "lattitude",
-          longitude: "longitude",
-          isMain: false);
-      placeList.add(p);
-      notifyListeners();
-    }
-    controller.text = "";
-    notifyListeners();
+  void addItemToContainListBySearch() {
+    //TODO request
   }
 
   void deleteItemFromContainList(int index) {
@@ -37,8 +27,45 @@ class AddPlaceProvider extends BaseBloc {
     notifyListeners();
   }
 
-  void save(BuildContext context, CreateTourProvider createTourProvider) {
-    createTourProvider.setPlacesList(placeList);
-    Navigator.pop(context);
+  void save(BuildContext context) {
+    if (placeList.isNotEmpty) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => CreateTourScreen(placeList: placeList)));
+    } else {
+      showMessageAboutEmptyPlaces(context);
+    }
+  }
+
+  void showMessageAboutEmptyPlaces(BuildContext context) {
+    CoolAlert.show(
+      context: context,
+      type: CoolAlertType.info,
+      title: "",
+      text: "Place list can't be empty!",
+    );
+  }
+
+  void addPlaceToPlaceList(PlaceModel placeModel) {
+    placeList.add(placeModel);
+    notifyListeners();
+  }
+
+  // --------------------
+  List<PlaceModel> testPlaces = [
+    PlaceModel(name: "Чарын", lattitude: "", longitude: "", isMain: false),
+    PlaceModel(name: "Kolsai", lattitude: "", longitude: "", isMain: false),
+    PlaceModel(name: "Qaiyndy", lattitude: "", longitude: "", isMain: false),
+    PlaceModel(
+        name: "Zherdyn bir zheri", lattitude: "", longitude: "", isMain: false),
+    PlaceModel(
+        name: "Globustyn' шеті", lattitude: "", longitude: "", isMain: false),
+  ];
+
+  void addOrDeleteInList(int index) {
+    isChoosedTestList[index] = !isChoosedTestList[index];
+    placeList.add(testPlaces[index]);
+    notifyListeners();
   }
 }

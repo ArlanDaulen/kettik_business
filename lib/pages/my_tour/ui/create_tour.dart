@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_contain.dart';
@@ -18,18 +19,18 @@ import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/default_button.dart';
 
 class CreateTourScreen extends StatelessWidget {
-  const CreateTourScreen({Key? key}) : super(key: key);
+  final List<PlaceModel> placeList;
 
+  CreateTourScreen({required this.placeList});
   @override
   Widget build(BuildContext context) {
     return BaseProvider<CreateTourProvider>(
-        onReady: (_) => _.init(context),
+        onReady: (_) => _.init(context, placeList),
         builder: (context, model, child) {
           return SafeArea(
             child: KeyboardDismissOnTap(
               child: Scaffold(
                 appBar: AppBar(
-                  elevation: 0,
                   leading: IconButton(
                     icon: const Icon(
                       Icons.arrow_back_ios,
@@ -46,7 +47,7 @@ class CreateTourScreen extends StatelessWidget {
                       fontSize: 17,
                     ),
                   ),
-                  backgroundColor: AppColors.bgColor,
+                  backgroundColor: AppColors.whiteColor,
                   centerTitle: true,
                 ),
                 // backgroundColor: Color.fromARGB(255, 240, 240, 240),
@@ -57,163 +58,6 @@ class CreateTourScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        model.images != null && model.images!.isEmpty
-                            ? InkWell(
-                                onTap: () async {
-                                  await model.loadImages(context);
-                                },
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  width: model.size!.width,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.whiteColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: AppColors.systemDarkGrayColor
-                                                .withOpacity(0.2),
-                                            offset: const Offset(0, 2),
-                                            blurRadius: 3,
-                                            spreadRadius: 3)
-                                      ],
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Text(
-                                    "addImages".tr(),
-                                    style: const TextStyle(
-                                        color: AppColors.systemBlackColor,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 18),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ))
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  CarouselSlider(
-                                    options: CarouselOptions(
-                                        height: 250,
-                                        viewportFraction: 0.95,
-                                        autoPlay: true),
-                                    items: model.images!.map((i) {
-                                      return Builder(
-                                        builder: (BuildContext context) {
-                                          return Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5.0),
-                                              decoration: const BoxDecoration(
-                                                  color: Colors.deepPurple),
-                                              child: Image.file(
-                                                File(i.path),
-                                                fit: BoxFit.cover,
-                                              ));
-                                        },
-                                      );
-                                    }).toList(),
-                                  ),
-                                  SizedBox(
-                                      height: getProportionateScreenHeight(40)),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        right: getProportionateScreenWidth(30)),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      // mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        InkWell(
-                                          onTap: () async {
-                                            // await model.addImages(context);
-                                            await model.loadImages(context);
-                                          },
-                                          child: Container(
-                                            width: model.size!.width * 0.2,
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 20),
-                                            decoration: BoxDecoration(
-                                                color: AppColors.primaryColor
-                                                    .withOpacity(0.8),
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: const Text(
-                                              "Add",
-                                              style: TextStyle(
-                                                  color: AppColors.whiteColor),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            width: getProportionateScreenWidth(
-                                                20)),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        EditImagesScreen(
-                                                          createTourProvider:
-                                                              model,
-                                                        )));
-                                          },
-                                          child: Container(
-                                            width: model.size!.width * 0.2,
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 20),
-                                            decoration: BoxDecoration(
-                                                color: AppColors.primaryColor
-                                                    .withOpacity(0.8),
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: const Text(
-                                              "Edit",
-                                              style: TextStyle(
-                                                  color: AppColors.whiteColor),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            width: getProportionateScreenWidth(
-                                                20)),
-                                        InkWell(
-                                          onTap: () {
-                                            _clearDialog(context, model);
-                                          },
-                                          child: Container(
-                                            width: model.size!.width * 0.2,
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 20),
-                                            decoration: BoxDecoration(
-                                                color: AppColors.systemRedColor
-                                                    .withOpacity(0.7)
-                                                    .withOpacity(0.8),
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            child: const Text(
-                                              "Clear",
-                                              style: TextStyle(
-                                                  color: AppColors.whiteColor),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: getProportionateScreenHeight(20)),
-                                ],
-                              ),
                         Container(
                           padding: EdgeInsets.symmetric(
                               vertical: getProportionateScreenHeight(10),
@@ -223,6 +67,14 @@ class CreateTourScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              SizedBox(
+                                  height: getProportionateScreenHeight(30)),
+                              Text(
+                                "Шаг 2. Креативно опишите ваш тур.",
+                                style: TextStyle(
+                                    color: AppColors.systemBlackColor
+                                        .withOpacity(0.7)),
+                              ),
                               SizedBox(
                                   height: getProportionateScreenHeight(30)),
                               TextFormField(
@@ -431,32 +283,27 @@ class CreateTourScreen extends StatelessWidget {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w700),
                               ),
-                              model.placesList.isEmpty
-                                  ? const Text("- Empty list")
-                                  : ListView.builder(
-                                      itemCount: model.placesList.length,
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemBuilder: (context, index) {
-                                        return Text(" - " +
-                                            model.placesList[index].name!);
-                                      }),
+                              ListView.builder(
+                                  itemCount: model.placesList.length,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return Text(
+                                        " - " + model.placesList[index].name!);
+                                  }),
 
                               SizedBox(
-                                  height: getProportionateScreenHeight(20)),
-                              _addMoreDetailInfo(model, () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => AddPlaceScreen(
-                                              createTourProvider: model,
-                                            )));
-                              }, "addPlace".tr(), "description"),
+                                  height: getProportionateScreenHeight(50)),
+                              // _addMoreDetailInfo(model, () {
+                              //   Navigator.push(
+                              //       context,
+                              //       MaterialPageRoute(
+                              //           builder: (_) => AddPlaceScreen()));
+                              // }, "addPlace".tr(), "description"),
 
-                              SizedBox(
-                                height: getProportionateScreenHeight(40),
-                              ),
+                              // SizedBox(
+                              //   height: getProportionateScreenHeight(40),
+                              // ),
 
                               Text(
                                 "tourServices".tr(),
@@ -510,7 +357,9 @@ class CreateTourScreen extends StatelessWidget {
                               ),
 
                               DefaultButton(
-                                press: () {},
+                                press: () async {
+                                  await model.createTour(context);
+                                },
                                 text: "create".tr(),
                               ),
                               SizedBox(
@@ -561,42 +410,4 @@ class CreateTourScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-_clearDialog(BuildContext context, CreateTourProvider createTourProvider) {
-  return showDialog(
-    context: context,
-    builder: (_) => CupertinoAlertDialog(
-      title: Text(
-        'Вы действительно хотите очистить картинки?',
-        style: TextStyle(
-          fontSize: getProportionateScreenHeight(36),
-        ),
-      ),
-      actions: [
-        CupertinoDialogAction(
-          child: Text(
-            'Нет',
-            style: TextStyle(
-              fontSize: getProportionateScreenHeight(32),
-            ),
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
-        CupertinoDialogAction(
-          isDefaultAction: true,
-          child: Text(
-            'Да',
-            style: TextStyle(
-              fontSize: getProportionateScreenHeight(32),
-            ),
-          ),
-          onPressed: () {
-            createTourProvider.clearImages();
-            Navigator.pop(context);
-          },
-        ),
-      ],
-    ),
-  );
 }
