@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 
@@ -16,7 +17,7 @@ class IndexProvider extends BaseBloc {
     'profile'.tr(),
   ];
 
-  init(BuildContext context) {
+  init(BuildContext context) async {
     setLoading(true);
     SizeConfig().init(context);
     items = [
@@ -31,7 +32,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(50),
         ),
-        label: 'Statistics',
+        label: 'statistics'.tr(),
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -44,7 +45,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(45),
         ),
-        label: 'My tours',
+        label: 'myTours'.tr(),
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(
@@ -57,7 +58,7 @@ class IndexProvider extends BaseBloc {
           width: getProportionateScreenHeight(50),
           height: getProportionateScreenHeight(50),
         ),
-        label: 'Profile',
+        label: 'profile'.tr(),
       ),
     ];
     setLoading(false);

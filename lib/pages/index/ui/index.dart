@@ -22,9 +22,6 @@ class IndexScreen extends StatelessWidget {
         return model.isLoading
             ? const LoadingView()
             : Scaffold(
-                appBar: CustomAppBar(
-                  title: model.currentTitle,
-                ),
                 body: _body[model.bottomIndex],
                 bottomNavigationBar: BottomNavigationBar(
                   selectedItemColor: AppColors.primaryColor,

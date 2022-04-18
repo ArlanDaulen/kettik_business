@@ -14,12 +14,7 @@ class MyTourProvider extends BaseBloc {
 
   String filterType = "";
   String filterTypeGroup = "";
-  List<String> filterTypesList = [
-    "fromHottest".tr(),
-    "fromNewest".tr(),
-    "fromCheapestToExpensive".tr(),
-    "fromExpensiveToCheapest".tr(),
-  ];
+  bool isSearching = false;
 
   init(BuildContext context) {
     setLoading(true);
@@ -116,7 +111,7 @@ class MyTourProvider extends BaseBloc {
   }
 
   TextStyle getStyleForDescriptionText() {
-    return TextStyle(color: Colors.black87);
+    return const TextStyle(color: Colors.black87);
   }
 
   setTourShowTextList(int index) {
@@ -125,9 +120,32 @@ class MyTourProvider extends BaseBloc {
 
     notifyListeners();
   }
+
+  setIsSearching(bool value) {
+    isSearching = value;
+    notifyListeners();
+  }
+
+  searchTourByName(BuildContext context, String value) {
+    if (searchController.text.isEmpty) {
+      setIsSearching(false);
+      //TODO return old tour list
+      return;
+    }
+    setIsSearching(true);
+    //TODO request to  get tours by searching
+  }
+
+  void cancelSearching(BuildContext context) {
+    searchController.text = "";
+    FocusNode().unfocus();
+    setIsSearching(false);
+    notifyListeners();
+  }
 }
 
 class TourTestModel {
+  int? id;
   String? name;
   String? city;
   double? rating;

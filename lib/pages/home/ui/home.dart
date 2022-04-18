@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: getProportionateScreenHeight(30),
+                height: getProportionateScreenHeight(150),
               ),
               Container(
                 padding: EdgeInsets.symmetric(

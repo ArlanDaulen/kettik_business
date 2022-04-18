@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: getProportionateScreenHeight(30),
+                height: getProportionateScreenHeight(150),
               ),
               UserInfo(model: model),
               SizedBox(

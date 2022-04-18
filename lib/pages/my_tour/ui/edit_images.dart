@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kettik_business/base/base_provider.dart';
+import 'package:kettik_business/pages/my_tour/provider/add_image_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/edit_images_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -11,8 +12,8 @@ import 'package:kettik_business/widgets/loading_view.dart';
 
 class EditImagesScreen extends StatelessWidget {
   // final List<XFile> images;
-  final CreateTourProvider createTourProvider;
-  EditImagesScreen({required this.createTourProvider});
+  final AddImageProvider addImageProvider;
+  EditImagesScreen({required this.addImageProvider});
   @override
   Widget build(BuildContext context) {
     return BaseProvider<EditImagesProvider>(
@@ -42,7 +43,7 @@ class EditImagesScreen extends StatelessWidget {
                     actions: [
                       TextButton(
                           onPressed: () {
-                            model.applyChanges(context, createTourProvider);
+                            model.applyChanges(context, addImageProvider);
                           },
                           child: Text(
                             "Apply",
@@ -65,7 +66,7 @@ class EditImagesScreen extends StatelessWidget {
                         ListView.separated(
                           physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: createTourProvider.images!.length,
+                          itemCount: addImageProvider.images!.length,
                           separatorBuilder: (BuildContext context, int index) {
                             return const Divider(height: 50, thickness: 1);
                           },
@@ -78,8 +79,7 @@ class EditImagesScreen extends StatelessWidget {
                                 SizedBox(
                                   width: model.size!.width,
                                   child: Image.file(
-                                    File(
-                                        createTourProvider.images![index].path),
+                                    File(addImageProvider.images![index].path),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -95,8 +95,8 @@ class EditImagesScreen extends StatelessWidget {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          model.replaceThisImage(context,
-                                              createTourProvider, index);
+                                          model.replaceThisImage(
+                                              context, addImageProvider, index);
                                         },
                                         child: Container(
                                             padding: EdgeInsets.symmetric(
@@ -120,8 +120,8 @@ class EditImagesScreen extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          model.deleteThisImage(context,
-                                              createTourProvider, index);
+                                          model.deleteThisImage(
+                                              context, addImageProvider, index);
                                         },
                                         child: Container(
                                             padding: EdgeInsets.symmetric(

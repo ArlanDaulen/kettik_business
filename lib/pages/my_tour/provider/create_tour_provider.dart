@@ -6,6 +6,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_image.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:intl/src/intl/date_format.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +19,7 @@ class CreateTourProvider extends BaseBloc {
 
   String city = "Алматы";
 
-  List<XFile>? images = [];
+  // List<XFile>? images = [];
   List<String> cities = [
     "Алматы",
     "Астана",
@@ -26,13 +27,7 @@ class CreateTourProvider extends BaseBloc {
     "Кызылорда",
   ];
 
-  List<PlaceModel> placesList = [
-    PlaceModel(
-        name: "MyPoint",
-        lattitude: "43.238949",
-        longitude: "76.889709",
-        isMain: false)
-  ];
+  List<PlaceModel> placesList = [];
 
   List<String> containList = [
     "Услуги профессионального гида",
@@ -43,30 +38,31 @@ class CreateTourProvider extends BaseBloc {
 
   Size? size;
 
-  init(BuildContext context) {
+  init(BuildContext context, List<PlaceModel> choosedPlaces) {
     setLoading(true);
     size = MediaQuery.of(context).size;
     SizeConfig().init(context);
+    placesList = choosedPlaces;
     addTourDateAndCountPersonsToList();
     setLoading(false);
   }
 
-  Future<void> uploadImage() async {
-    String url = "EbalIaTvoiRot.com";
-    var request = http.MultipartRequest('POST', Uri.parse(url));
-    for (XFile xFile in images!) {
-      request.files.add(http.MultipartFile(
-          'image',
-          File(xFile.path).readAsBytes().asStream(),
-          File(xFile.path).lengthSync(),
-          filename: xFile.path.split("/").last));
-    }
-    var res = await request.send();
+  // Future<void> uploadImage() async {
+  //   String url = "EbalIaTvoiRot.com";
+  //   var request = http.MultipartRequest('POST', Uri.parse(url));
+  //   for (XFile xFile in images!) {
+  //     request.files.add(http.MultipartFile(
+  //         'image',
+  //         File(xFile.path).readAsBytes().asStream(),
+  //         File(xFile.path).lengthSync(),
+  //         filename: xFile.path.split("/").last));
+  //   }
+  //   var res = await request.send();
 
-    res.statusCode == 200
-        ? log("SUCCESS UPLOAD")
-        : log("FAILED statuc code is ${res.statusCode}");
-  }
+  //   res.statusCode == 200
+  //       ? log("SUCCESS UPLOAD")
+  //       : log("FAILED statuc code is ${res.statusCode}");
+  // }
 
   getDateRangeOfTour(TourDateAndCountPersonsModel tourDateAndCountPersons) {
     return getDateFormattedTextForView(tourDateAndCountPersons.fromDate) +
@@ -122,10 +118,10 @@ class CreateTourProvider extends BaseBloc {
     notifyListeners();
   }
 
-  void setPlacesList(List<PlaceModel> newPlaceList) {
-    placesList = newPlaceList;
-    notifyListeners();
-  }
+  // void setPlacesList(List<PlaceModel> newPlaceList) {
+  //   placesList = newPlaceList;
+  //   notifyListeners();
+  // }
 
   void addMoreDatesForTours() {
     addTourDateAndCountPersonsToList();
@@ -145,39 +141,47 @@ class CreateTourProvider extends BaseBloc {
     notifyListeners();
   }
 
-  loadImages(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    var imagesWithoutCroppedList = await _picker.pickMultiImage();
-    if (imagesWithoutCroppedList != null) {
-      for (XFile xFile in imagesWithoutCroppedList) {
-        File f = await cropImage(File(xFile.path));
-
-        images!.add(XFile(f.path));
-      }
-    }
-
-    notifyListeners();
+  createTour(BuildContext context) async {
+    setIsSendRequest(true);
+    //TODO request to create tour
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => const AddImageScreen()));
+    setIsSendRequest(false);
   }
 
-  cropImage(File imageFile) async {
-    File? croppedFile = await ImageCropper().cropImage(
-      sourcePath: imageFile.path,
-      aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
-      androidUiSettings: const AndroidUiSettings(
-          toolbarTitle: 'Cropper',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
-          initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false),
-      iosUiSettings: const IOSUiSettings(
-        minimumAspectRatio: 1.0,
-      ),
-    );
-    if (croppedFile != null) {
-      return croppedFile;
-    }
-    return null;
-  }
+  // loadImages(BuildContext context) async {
+  //   final ImagePicker _picker = ImagePicker();
+  //   var imagesWithoutCroppedList = await _picker.pickMultiImage();
+  //   if (imagesWithoutCroppedList != null) {
+  //     for (XFile xFile in imagesWithoutCroppedList) {
+  //       File f = await cropImage(File(xFile.path));
+
+  //       images!.add(XFile(f.path));
+  //     }
+  //   }
+
+  //   notifyListeners();
+  // }
+
+  // cropImage(File imageFile) async {
+  //   File? croppedFile = await ImageCropper().cropImage(
+  //     sourcePath: imageFile.path,
+  //     aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
+  //     androidUiSettings: const AndroidUiSettings(
+  //         toolbarTitle: 'Cropper',
+  //         toolbarColor: Colors.deepOrange,
+  //         toolbarWidgetColor: Colors.white,
+  //         initAspectRatio: CropAspectRatioPreset.original,
+  //         lockAspectRatio: false),
+  //     iosUiSettings: const IOSUiSettings(
+  //       minimumAspectRatio: 1.0,
+  //     ),
+  //   );
+  //   if (croppedFile != null) {
+  //     return croppedFile;
+  //   }
+  //   return null;
+  // }
 
   // addImages(BuildContext context) async {
   //   final ImagePicker _picker = ImagePicker();
@@ -192,26 +196,26 @@ class CreateTourProvider extends BaseBloc {
   //   notifyListeners();
   // }
 
-  void clearImages() {
-    images!.clear();
-    notifyListeners();
-  }
+  // void clearImages() {
+  //   images!.clear();
+  //   notifyListeners();
+  // }
 
-  void deleteImageByXFile(XFile xFile) {
-    images!.remove(xFile);
-    notifyListeners();
-  }
+  // void deleteImageByXFile(XFile xFile) {
+  //   images!.remove(xFile);
+  //   notifyListeners();
+  // }
 
-  replaceImageByXFile(XFile xFileForDelete) async {
-    final ImagePicker _picker = ImagePicker();
-    XFile? choosedImage = await _picker.pickImage(source: ImageSource.gallery);
+//   replaceImageByXFile(XFile xFileForDelete) async {
+//     final ImagePicker _picker = ImagePicker();
+//     XFile? choosedImage = await _picker.pickImage(source: ImageSource.gallery);
 
-    if (choosedImage != null) {
-      File f = await cropImage(File(choosedImage.path));
-      images![images!.indexOf(xFileForDelete)] = XFile(f.path);
-      notifyListeners();
-    }
-  }
+//     if (choosedImage != null) {
+//       File f = await cropImage(File(choosedImage.path));
+//       images![images!.indexOf(xFileForDelete)] = XFile(f.path);
+//       notifyListeners();
+//     }
+//   }
 }
 
 class TourDateAndCountPersonsModel {

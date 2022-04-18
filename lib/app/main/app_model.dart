@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/auth/ui/login.dart';
 import 'package:kettik_business/pages/index/ui/index.dart';
 import 'package:kettik_business/pages/my_tour/ui/my_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
@@ -50,6 +51,7 @@ class MyAppModel extends BaseBloc {
   }
 
   Widget getHomeScreen() {
-    return const IndexScreen();
+    return const LoginScreen();
+    // return const IndexScreen();
   }
 }
