@@ -14,6 +14,7 @@ class IndexProvider extends BaseBloc {
   final List<String> _titles = [
     'statistics'.tr(),
     'myTours'.tr(),
+    'Ticket request'.tr(),
     'profile'.tr(),
   ];
 
@@ -46,6 +47,19 @@ class IndexProvider extends BaseBloc {
           height: getProportionateScreenHeight(45),
         ),
         label: 'myTours'.tr(),
+      ),
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          AppSvgImages.ticket_dark_ic,
+          width: getProportionateScreenHeight(50),
+          height: getProportionateScreenHeight(45),
+        ),
+        activeIcon: SvgPicture.asset(
+          AppSvgImages.ticket_ic,
+          width: getProportionateScreenHeight(50),
+          height: getProportionateScreenHeight(45),
+        ),
+        label: 'Requests',
       ),
       BottomNavigationBarItem(
         icon: SvgPicture.asset(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
-import 'package:kettik_business/pages/profile/ui/change_profile_screen.dart';
+import 'package:kettik_business/pages/profile/ui/change_profile.dart';
 import 'package:kettik_business/pages/profile/ui/widgets/settings.dart';
 import 'package:kettik_business/pages/profile/ui/widgets/user_info.dart';
 import 'package:kettik_business/shared/size_config.dart';

@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
-import 'package:kettik_business/pages/profile/ui/help_screen.dart';
+import 'package:kettik_business/pages/profile/ui/help.dart';
 import 'package:kettik_business/pages/profile/ui/widgets/change_language_alert_dialog.dart';
 import 'package:kettik_business/pages/profile/ui/widgets/lang.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 
-import '../about_business_screen.dart';
+import '../about_business.dart';
 
 class Settings extends StatelessWidget {
   Settings({Key? key, required this.model}) : super(key: key);

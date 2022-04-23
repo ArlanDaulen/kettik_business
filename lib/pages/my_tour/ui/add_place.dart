@@ -19,10 +19,12 @@ class AddPlaceScreen extends StatelessWidget {
               : KeyboardDismissOnTap(
                   child: Scaffold(
                     appBar: AppBar(
-                      backgroundColor: AppColors.primaryColor.withOpacity(0.8),
+                      backgroundColor: AppColors.whiteColor,
+                      foregroundColor: AppColors.systemBlackColor,
                       title: const Text(
                         "Места",
-                        style: TextStyle(fontSize: 19),
+                        style: TextStyle(
+                            fontSize: 19, color: AppColors.systemBlackColor),
                       ),
                       actions: [
                         Padding(

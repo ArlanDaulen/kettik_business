@@ -6,6 +6,7 @@ import 'package:kettik_business/app/main/user_data.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/core/freezed/network_error.dart';
 import 'package:kettik_business/core/freezed/result.dart';
+import 'package:kettik_business/pages/auth/ui/additional_info_feel.dart';
 import 'package:kettik_business/pages/index/ui/index.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -19,9 +20,9 @@ class LoginProvider extends BaseBloc {
   AuthService _authService = AuthService();
   UserData _userData = UserData();
   var phoneFormatter = MaskTextInputFormatter(
-      mask: '(###) ###-##-##',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
+    mask: '(###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   init(BuildContext context) {
     setLoading(true);
@@ -51,8 +52,11 @@ class LoginProvider extends BaseBloc {
     // loginResponse.when(success: (response) async {
     //   _userData.setAllUserDatas(
     //       response.token, response.expiryDate, response.user);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => const IndexScreen()));
+    3 + 5 == 8
+        ? Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const AdditionalInfoFeelScreen()))
+        : Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const IndexScreen()));
     // }, failure: (error) {
     //   CoolAlert.show(
     //       context: context,

@@ -17,97 +17,100 @@ class HomeScreen extends StatelessWidget {
       model: HomeProvider(),
       onReady: (p0) => p0.init(context),
       builder: (context, model, child) {
-        return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(30),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: getProportionateScreenHeight(150),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(30),
-                  vertical: getProportionateScreenHeight(40),
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+            color: AppColors.systemBlackColor.withOpacity(0.05),
+            padding: EdgeInsets.symmetric(
+              horizontal: getProportionateScreenWidth(30),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: getProportionateScreenHeight(150),
                 ),
-                margin: EdgeInsets.symmetric(
-                  horizontal: getProportionateScreenWidth(10),
-                ),
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 4),
-                        blurRadius: 1,
-                        color: AppColors.systemBlackColor.withOpacity(0.25),
-                      )
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          AppSvgImages.calendar_ic,
-                          width: getProportionateScreenWidth(45),
-                          height: getProportionateScreenHeight(45),
-                        ),
-                        SizedBox(
-                          width: getProportionateScreenWidth(40),
-                        ),
-                        Text(
-                          'Mar 17 - 17 Apr',
-                          style: TextStyle(
-                            fontSize: getProportionateScreenHeight(36),
-                            fontWeight: FontWeight.w400,
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(30),
+                    vertical: getProportionateScreenHeight(40),
+                  ),
+                  margin: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(10),
+                  ),
+                  decoration: BoxDecoration(
+                      color: AppColors.whiteColor,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 4),
+                          blurRadius: 1,
+                          color: AppColors.systemBlackColor.withOpacity(0.25),
+                        )
+                      ]),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            AppSvgImages.calendar_ic,
+                            width: getProportionateScreenWidth(45),
+                            height: getProportionateScreenHeight(45),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    const Divider(
-                      color: AppColors.primaryColor,
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    _buildStatSections(
-                        AppSvgImages.all_tours_ic, 'totalTours'.tr(), 4),
-                    SizedBox(height: getProportionateScreenHeight(10)),
-                    _buildStatSections(
-                        AppSvgImages.ticket_ic, 'numberOfTickets'.tr(), 44),
-                    SizedBox(height: getProportionateScreenHeight(10)),
-                    _buildStatSections(
-                        AppSvgImages.ticket_ic, 'ticketsSold'.tr(), 23),
-                    SizedBox(height: getProportionateScreenHeight(10)),
-                    _buildStatSections(
-                        AppSvgImages.ticket_ic, 'ticketsLeft'.tr(), 21),
-                  ],
+                          SizedBox(
+                            width: getProportionateScreenWidth(40),
+                          ),
+                          Text(
+                            'Mar 17 - 17 Apr',
+                            style: TextStyle(
+                              fontSize: getProportionateScreenHeight(36),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(20),
+                      ),
+                      const Divider(
+                        color: AppColors.primaryColor,
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(20),
+                      ),
+                      _buildStatSections(
+                          AppSvgImages.all_tours_ic, 'totalTours'.tr(), 4),
+                      SizedBox(height: getProportionateScreenHeight(10)),
+                      _buildStatSections(
+                          AppSvgImages.ticket_ic, 'numberOfTickets'.tr(), 44),
+                      SizedBox(height: getProportionateScreenHeight(10)),
+                      _buildStatSections(
+                          AppSvgImages.ticket_ic, 'ticketsSold'.tr(), 23),
+                      SizedBox(height: getProportionateScreenHeight(10)),
+                      _buildStatSections(
+                          AppSvgImages.ticket_ic, 'ticketsLeft'.tr(), 21),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: getProportionateScreenHeight(40),
-              ),
-              Text(
-                'tourStatistics'.tr(),
-                style: TextStyle(
-                  fontSize: getProportionateScreenHeight(36),
-                  fontWeight: FontWeight.w500,
+                SizedBox(
+                  height: getProportionateScreenHeight(40),
                 ),
-              ),
-              SizedBox(
-                height: getProportionateScreenHeight(20),
-              ),
-              Expanded(
-                child: ListView.separated(
+                Text(
+                  'tourStatistics'.tr(),
+                  style: TextStyle(
+                    fontSize: getProportionateScreenHeight(36),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(20),
+                ),
+                ListView.separated(
+                  padding: const EdgeInsets.only(top: 0, bottom: 40),
                   shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 3,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 10,
                   separatorBuilder: (_, index) => SizedBox(
                     height: getProportionateScreenHeight(20),
                   ),
@@ -248,9 +251,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         );
       },
