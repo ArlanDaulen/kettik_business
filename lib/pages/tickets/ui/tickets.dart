@@ -22,7 +22,9 @@ class TicketsScreen extends StatelessWidget {
                     centerTitle: true,
                     title: const Text("Tour requests"),
                   ),
-                  backgroundColor: Colors.black.withOpacity(0.05),
+                  backgroundColor: model.tickets.isEmpty
+                      ? Colors.white
+                      : Colors.black.withOpacity(0.05),
                   body: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Container(
@@ -31,11 +33,14 @@ class TicketsScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           const SizedBox(height: 20),
-                          const Text(
-                            "Здесь отображаются заявки на туры!",
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.w500),
-                          ),
+                          model.tickets.isEmpty
+                              ? const SizedBox()
+                              : const Text(
+                                  "Здесь отображаются заявки на туры!",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
                           const SizedBox(height: 20),
                           model.tickets.isEmpty
                               ?
@@ -45,27 +50,33 @@ class TicketsScreen extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: const [
+                                    children: [
                                       //image
-                                      SizedBox(height: 100),
-                                      Icon(
-                                        Icons.rocket_launch,
-                                        color: AppColors.systemRedColor,
-                                        size: 150,
+                                      const SizedBox(height: 100),
+
+                                      Image.asset(
+                                        AppPngPaths.illustration_1,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                const Icon(
+                                          Icons.rocket_launch,
+                                          color: AppColors.systemRedColor,
+                                          size: 150,
+                                        ),
                                       ),
-                                      SizedBox(height: 30),
-                                      Text(
+                                      const SizedBox(height: 30),
+                                      const Text(
                                         "Заявок пока что нет.",
                                         style: TextStyle(
                                             fontSize: 19,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      Text(
+                                      const Text(
                                         "Давайте создадим новый тур!",
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.w400),
-                                      )
+                                      ),
                                     ],
                                   ))
                               : //TODO grouped list tickets
@@ -177,6 +188,21 @@ class TicketsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  floatingActionButton: model.tickets.isEmpty
+                      ? Padding(
+                          padding: const EdgeInsets.only(bottom: 18.0),
+                          child: DefaultButton(
+                            press: () {
+                              model.navigateToCreateTourScreen(context);
+                            },
+                            text: "Создать тур",
+                            width: model.size!.width * 0.8,
+                            color: AppColors.primaryColor,
+                          ),
+                        )
+                      : const SizedBox(),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
                 );
         }),
         model: TicketsProvider());

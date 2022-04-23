@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kettik_business/app/data/models/ticket_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 
 class TicketsProvider extends BaseBloc {
   Size? size;
@@ -71,5 +73,10 @@ class TicketsProvider extends BaseBloc {
     //TODO request to change status cancel
     tickets.removeAt(index);
     notifyListeners();
+  }
+
+  void navigateToCreateTourScreen(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => AddPlaceScreen()));
   }
 }

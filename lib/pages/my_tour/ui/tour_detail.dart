@@ -113,8 +113,11 @@ class TourDetailScreen extends StatelessWidget {
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
-                                  child: const Text(
-                                      "Dropdown button dadssad adhbdhasd hdadg ygdyasgd jkad jh kausd kjahsjdhasjdh uahusd uadh uasishu iauih a haishdui"),
+                                  child: Text(
+                                    model.description,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontSize: 14.3),
+                                  ),
                                 )),
 
                             //* toggle service list
@@ -131,7 +134,14 @@ class TourDetailScreen extends StatelessWidget {
                                   },
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return Text(model.testServices[index]);
+                                    return Container(
+                                        width: model.size!.width,
+                                        padding:
+                                            const EdgeInsets.only(left: 30),
+                                        child: Text(model.testServices[index],
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500)));
                                   },
                                 )),
 
@@ -151,30 +161,28 @@ class TourDetailScreen extends StatelessWidget {
                                   },
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return Text(
-                                        model.testAdditionalLocations[index]);
+                                    return Container(
+                                      width: model.size!.width,
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text(
+                                          model.testAdditionalLocations[index],
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500)),
+                                    );
                                   },
                                 )),
                           ],
                         ),
                         const SizedBox(height: 30),
                         DefaultButton(
-                          color: Colors.amber,
+                          color: Colors.black.withOpacity(0.9),
                           width: model.size!.width * 0.9,
                           text: "Edit tour",
                           press: () {
                             //TODO edit tour
                           },
                         ),
-                        SizedBox(height: 10),
-                        DefaultButton(
-                          color: AppColors.systemRedColor,
-                          width: model.size!.width * 0.9,
-                          text: "Delete tour",
-                          press: () {
-                            //TODO delete tour
-                          },
-                        )
                       ],
                     ),
                   ),
