@@ -146,103 +146,110 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             width: getProportionateScreenWidth(20),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Atlyn-emel',
-                                style: TextStyle(
-                                  fontSize: getProportionateScreenHeight(36),
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Text(
-                                'Almaty, Kazakhstan',
-                                style: TextStyle(
-                                  fontSize: getProportionateScreenHeight(20),
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Row(
-                                children: List.generate(
-                                  5,
-                                  (index) => SvgPicture.asset(
-                                    AppSvgImages.star_ic,
-                                    width: getProportionateScreenWidth(20),
-                                    height: getProportionateScreenHeight(20),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Atlyn-emel',
+                                  style: TextStyle(
+                                    fontSize: getProportionateScreenHeight(36),
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(10),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    AppSvgImages.departure_date_ic,
-                                    width: getProportionateScreenWidth(31),
-                                    height: getProportionateScreenHeight(24),
+                                Text(
+                                  'Almaty, Kazakhstan',
+                                  style: TextStyle(
+                                    fontSize: getProportionateScreenHeight(20),
+                                    fontWeight: FontWeight.w400,
                                   ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(20),
-                                  ),
-                                  Text(
-                                    '12.04 - 17.04, 5 ' + 'night'.tr(),
-                                    style: TextStyle(
-                                      fontSize:
-                                          getProportionateScreenHeight(18),
-                                      fontWeight: FontWeight.w400,
+                                ),
+                                Row(
+                                  children: List.generate(
+                                    5,
+                                    (index) => SvgPicture.asset(
+                                      AppSvgImages.star_ic,
+                                      width: getProportionateScreenWidth(20),
+                                      height: getProportionateScreenHeight(20),
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(10),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    AppSvgImages.ticket_dark_ic,
-                                    width: getProportionateScreenWidth(31),
-                                    height: getProportionateScreenHeight(28),
-                                  ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(20),
-                                  ),
-                                  Text(
-                                    'seatsPurchased'.tr() + ': 32',
-                                    style: TextStyle(
-                                      fontSize:
-                                          getProportionateScreenHeight(18),
-                                      fontWeight: FontWeight.w400,
+                                ),
+                                SizedBox(
+                                  height: getProportionateScreenHeight(10),
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppSvgImages.departure_date_ic,
+                                      width: getProportionateScreenWidth(31),
+                                      height: getProportionateScreenHeight(24),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(10),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    AppSvgImages.group_ic,
-                                    width: getProportionateScreenWidth(31),
-                                    height: getProportionateScreenHeight(24),
-                                  ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(20),
-                                  ),
-                                  Text(
-                                    'available'.tr() + ': 8',
-                                    style: TextStyle(
-                                      fontSize:
-                                          getProportionateScreenHeight(18),
-                                      fontWeight: FontWeight.w400,
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(20),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Text(
+                                      '12.04 - 17.04, 5 ' + 'night'.tr(),
+                                      style: TextStyle(
+                                        fontSize:
+                                            getProportionateScreenHeight(18),
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: getProportionateScreenHeight(10),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppSvgImages.ticket_dark_ic,
+                                      width: getProportionateScreenWidth(31),
+                                      height: getProportionateScreenHeight(28),
+                                    ),
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(20),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'seatsPurchased'.tr() + ': 32',
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          fontSize:
+                                              getProportionateScreenHeight(18),
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: getProportionateScreenHeight(10),
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      AppSvgImages.group_ic,
+                                      width: getProportionateScreenWidth(31),
+                                      height: getProportionateScreenHeight(24),
+                                    ),
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(20),
+                                    ),
+                                    Text(
+                                      'available'.tr() + ': 8',
+                                      style: TextStyle(
+                                        fontSize:
+                                            getProportionateScreenHeight(18),
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
