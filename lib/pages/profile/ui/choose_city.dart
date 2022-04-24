@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
-import 'package:kettik_business/pages/profile/provider/choose_city_screen_provider.dart';
+import 'package:kettik_business/pages/profile/provider/choose_city_provider.dart';
 import 'package:kettik_business/pages/profile/provider/profile_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';

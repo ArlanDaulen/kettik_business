@@ -108,4 +108,10 @@ class AppPngPaths {
   static const String whatsapp_ic = 'assets/icons/png/wpp_logo.png';
   static const String altym_emel_ic = 'assets/icons/png/altyn-emel.png';
   static const String charyn_ic = 'assets/icons/png/charyn.png';
+  static const String illustration_1 =
+      'assets/images/png/travel_illustration_4x.png';
+  static const String illustration_1_alt =
+      'assets/images/png/illustration_1.png';
+  static const String illustration_1_orange =
+      'assets/images/png/illustration_1_orange.jpeg';
 }

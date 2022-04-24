@@ -6,7 +6,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterProvider extends BaseBloc {
   TextEditingController usernameCtrl = TextEditingController();
-  TextEditingController nameOfOrganization = TextEditingController();
   TextEditingController emailCtrl = TextEditingController();
   TextEditingController phoneCtrl = TextEditingController();
   TextEditingController passwordCtrl = TextEditingController();

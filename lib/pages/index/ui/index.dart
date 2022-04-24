@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kettik_business/pages/home/ui/home.dart';
-import 'package:kettik_business/pages/profile/ui/profile_screen.dart';
+import 'package:kettik_business/pages/profile/ui/profile.dart';
+import 'package:kettik_business/pages/tickets/ui/tickets.dart';
 import 'package:kettik_business/widgets/custom_app_bar.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
 
@@ -42,5 +43,6 @@ class IndexScreen extends StatelessWidget {
 var _body = [
   const HomeScreen(),
   const MyTourScreen(),
+  const TicketsScreen(),
   const ProfileScreen(),
 ];

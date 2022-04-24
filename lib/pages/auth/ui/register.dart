@@ -78,31 +78,6 @@ class RegisterScreen extends StatelessWidget {
                             horizontal: getProportionateScreenWidth(60)),
                         child: CustomContainer(
                           child: TextField(
-                            controller: model.nameOfOrganization,
-                            onChanged: (String value) {
-                              model.checkForm();
-                            },
-                            keyboardType: TextInputType.text,
-                            cursorColor: AppColors.systemBlackColor,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.group,
-                                  color: AppColors.primaryColor),
-                              hintText: 'Name of Organization',
-                              hintStyle: TextStyle(
-                                fontFamily: 'Manrope',
-                                fontSize: 16,
-                              ),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                      UIHelper.verticalSpace(30),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: getProportionateScreenWidth(60)),
-                        child: CustomContainer(
-                          child: TextField(
                             controller: model.emailCtrl,
                             onChanged: (String value) {
                               model.checkForm();
