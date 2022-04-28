@@ -1,19 +1,12 @@
-import 'dart:io';
-
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:kettik_business/app/data/models/item_model.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
-import 'package:kettik_business/pages/my_tour/ui/add_contain.dart';
-import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
-import 'package:kettik_business/pages/my_tour/ui/edit_images.dart';
 import 'package:kettik_business/pages/my_tour/ui/period_picker_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';

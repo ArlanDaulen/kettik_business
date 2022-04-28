@@ -6,9 +6,8 @@ import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/add_item_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
+import 'package:kettik_business/widgets/default_button.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
-
-import '../../../widgets/default_button.dart';
 
 class AddItemScreen extends StatelessWidget {
   final List<PlaceModel> placesList;
@@ -108,24 +107,6 @@ class AddItemScreen extends StatelessWidget {
                                   ),
                                 ),
                               );
-                              // return Row(
-                              //   mainAxisAlignment:
-                              //       MainAxisAlignment.spaceBetween,
-                              //   crossAxisAlignment: CrossAxisAlignment.center,
-                              //   mainAxisSize: MainAxisSize.min,
-                              //   children: [
-                              //     SizedBox(
-                              //       width: model.size!.width * 0.7,
-                              //       child: Text(model.containList[index]),
-                              //     ),
-                              //     IconButton(
-                              //         onPressed: () {
-                              //           model.deleteItemFromContainList(index);
-                              //         },
-                              //         icon: const Icon(Icons.delete,
-                              //             color: Colors.red))
-                              //   ],
-                              // );
                             },
                             separatorBuilder: (context, index) => SizedBox(
                               height: getProportionateScreenHeight(20),

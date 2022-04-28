@@ -29,7 +29,8 @@ class AddPlaceProvider extends BaseBloc {
     notifyListeners();
   }
 
-  void save(BuildContext context) {
+  void saveAndNavigateToAddFavour(BuildContext context) {
+    //TODO need method when create place , Navigator.pop with adding new place to list
     if (placeList.isNotEmpty) {
       Navigator.push(
         context,
@@ -93,16 +94,5 @@ class AddPlaceProvider extends BaseBloc {
       placeList.remove(testPlaces[index]);
     }
     notifyListeners();
-  }
-
-  void navigateToAddFavour(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => AddFavourScreen(
-          placeList: placeList,
-        ),
-      ),
-    );
   }
 }

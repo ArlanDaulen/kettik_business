@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kettik_business/app/data/models/favour_model.dart';
 import 'package:kettik_business/app/data/models/item_model.dart';
+import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
-
-import '../../../app/data/models/favour_model.dart';
-import '../../../app/data/models/place_model.dart';
 
 class AddItemProvider extends BaseBloc {
   Size? size;
@@ -40,21 +39,10 @@ class AddItemProvider extends BaseBloc {
     notifyListeners();
   }
 
-  // void addItemToContainList() {
-  //   if (controller.text.isNotEmpty) {
-  //     containList.add(controller.text);
-  //     notifyListeners();
-  //   }
-  //   controller.text = "";
-  //   notifyListeners();
-  // }
-
   void deleteItemFromContainList(int index) {
     itemList.removeAt(index);
     notifyListeners();
   }
-
-  void navigateToServicesAddScreen(BuildContext context) {}
 
   void navigateToCreateTourPage(BuildContext context) => Navigator.push(
         context,

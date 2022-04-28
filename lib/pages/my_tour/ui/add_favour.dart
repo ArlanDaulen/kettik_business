@@ -15,7 +15,7 @@ class AddFavourScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseProvider<AddFavourProvider>(
-        onReady: (_) => _.init(context, placeList),
+        onReady: (_) => _.init(context),
         builder: ((context, model, child) {
           return model.isLoading
               ? const LoadingView()
@@ -34,7 +34,8 @@ class AddFavourScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 10.0),
                           child: IconButton(
                               onPressed: () {
-                                model.save(context);
+                                model.saveAndNavigateToAddItems(
+                                    context, placeList);
                               },
                               icon: const Icon(Icons.arrow_forward_ios)),
                         )
@@ -65,7 +66,14 @@ class AddFavourScreen extends StatelessWidget {
                             const SizedBox(
                               height: 30,
                             ),
-                            const Text("Services in my Tour:"),
+                            model.favourList.isEmpty
+                                ? const SizedBox()
+                                : const Text(
+                                    "Services in my Tour:",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15),
+                                  ),
                             ListView.separated(
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
@@ -105,7 +113,7 @@ class AddFavourScreen extends StatelessWidget {
                       width: model.size!.width * 0.9,
                       text: "Дальше",
                       press: () {
-                        model.navigateToAddItems(context);
+                        model.saveAndNavigateToAddItems(context, placeList);
                       },
                     ),
                   ),

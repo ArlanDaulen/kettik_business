@@ -32,7 +32,7 @@ class AddPlaceScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 10.0),
                             child: IconButton(
                                 onPressed: () {
-                                  model.save(context);
+                                  model.saveAndNavigateToAddFavour(context);
                                 },
                                 icon: const Icon(Icons.arrow_forward_ios)),
                           )
@@ -65,9 +65,17 @@ class AddPlaceScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text("Places in my Tour:"),
+                              model.placeList.isEmpty
+                                  ? const SizedBox()
+                                  : const Text(
+                                      "Places in my Tour:",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15),
+                                    ),
                               ListView.separated(
                                   shrinkWrap: true,
+                                  padding: const EdgeInsets.all(0),
                                   physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return Row(
@@ -94,10 +102,17 @@ class AddPlaceScreen extends StatelessWidget {
                                     );
                                   },
                                   separatorBuilder: (context, index) =>
-                                      SizedBox(
-                                          height:
-                                              getProportionateScreenHeight(20)),
+                                      const Divider(
+                                        color: AppColors.primaryColor,
+                                        height: 0,
+                                      ),
                                   itemCount: model.placeList.length),
+
+                              model.placeList.isEmpty
+                                  ? const SizedBox()
+                                  : const SizedBox(
+                                      height: 120,
+                                    ),
                             ],
                           ),
                         ),
@@ -108,7 +123,7 @@ class AddPlaceScreen extends StatelessWidget {
                         width: model.size!.width * 0.9,
                         text: "Дальше",
                         press: () {
-                          model.navigateToAddFavour(context);
+                          model.saveAndNavigateToAddFavour(context);
                         },
                       )),
                 );
