@@ -21,6 +21,7 @@ class CreatePlaceScreen extends StatelessWidget {
       builder: (_, model, child) {
         return KeyboardDismissOnTap(
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             appBar: AppBar(
               title: const Text('Choose place'),
               centerTitle: true,
