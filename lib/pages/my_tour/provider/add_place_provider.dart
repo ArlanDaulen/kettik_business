@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_favour.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_place.dart';
 import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
@@ -94,5 +95,24 @@ class AddPlaceProvider extends BaseBloc {
       placeList.remove(testPlaces[index]);
     }
     notifyListeners();
+  }
+
+  void navigateToAddFavour(BuildContext context) {
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (_) => AddFavourScreen(
+    //       placeList: placeList,
+    //     ),
+    //   ),
+    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CreatePlaceScreen(
+          addPlaceProvider: this,
+        ),
+      ),
+    );
   }
 }

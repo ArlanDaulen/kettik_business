@@ -76,8 +76,9 @@ class AddItemScreen extends StatelessWidget {
                           Text(
                             "Шаг 3. Создайте вещи для создание тура.",
                             style: TextStyle(
-                                color: AppColors.systemBlackColor
-                                    .withOpacity(0.7)),
+                              color:
+                                  AppColors.systemBlackColor.withOpacity(0.7),
+                            ),
                           ),
                           SizedBox(
                             height: getProportionateScreenHeight(50),
