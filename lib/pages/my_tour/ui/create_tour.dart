@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:kettik_business/app/data/models/item_model.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
@@ -18,12 +19,18 @@ import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/default_button.dart';
 
+import '../../../app/data/models/favour_model.dart';
+
 class CreateTourScreen extends StatelessWidget {
   final List<PlaceModel> placeList;
-  //  final  List<PlaceModel> placesList;
-//  final  List<FavourModel> favourList;
+  final List<FavourModel> favourList;
+  final List<ItemModel> itemList;
 
-  CreateTourScreen({required this.placeList});
+  CreateTourScreen({
+    required this.placeList,
+    required this.favourList,
+    required this.itemList,
+  });
   @override
   Widget build(BuildContext context) {
     return BaseProvider<CreateTourProvider>(

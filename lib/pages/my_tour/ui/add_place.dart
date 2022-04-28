@@ -56,7 +56,8 @@ class AddPlaceScreen extends StatelessWidget {
                                         .withOpacity(0.7)),
                               ),
                               SizedBox(
-                                  height: getProportionateScreenHeight(50)),
+                                height: getProportionateScreenHeight(50),
+                              ),
 
                               //TODO here tours by search
 

@@ -32,9 +32,11 @@ class AddPlaceProvider extends BaseBloc {
   void save(BuildContext context) {
     if (placeList.isNotEmpty) {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => CreateTourScreen(placeList: placeList)));
+        context,
+        MaterialPageRoute(
+          builder: (_) => AddFavourScreen(placeList: placeList),
+        ),
+      );
     } else {
       showMessageAboutEmptyPlaces(context);
     }
@@ -85,12 +87,22 @@ class AddPlaceProvider extends BaseBloc {
 
   void addOrDeleteInList(int index) {
     isChoosedTestList[index] = !isChoosedTestList[index];
-    placeList.add(testPlaces[index]);
+    if (isChoosedTestList[index]) {
+      placeList.add(testPlaces[index]);
+    } else {
+      placeList.remove(testPlaces[index]);
+    }
     notifyListeners();
   }
 
   void navigateToAddFavour(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (_) => const AddFavourScreen()));
+      context,
+      MaterialPageRoute(
+        builder: (_) => AddFavourScreen(
+          placeList: placeList,
+        ),
+      ),
+    );
   }
 }
