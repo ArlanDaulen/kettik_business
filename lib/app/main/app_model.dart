@@ -51,7 +51,7 @@ class MyAppModel extends BaseBloc {
   }
 
   Widget getHomeScreen() {
-    return const LoginScreen();
-    // return const IndexScreen();
+    // return const LoginScreen();
+    return const IndexScreen();
   }
 }

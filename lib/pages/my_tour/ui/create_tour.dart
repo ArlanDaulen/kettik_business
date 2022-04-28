@@ -20,6 +20,8 @@ import 'package:kettik_business/widgets/default_button.dart';
 
 class CreateTourScreen extends StatelessWidget {
   final List<PlaceModel> placeList;
+  //  final  List<PlaceModel> placesList;
+//  final  List<FavourModel> favourList;
 
   CreateTourScreen({required this.placeList});
   @override
@@ -312,13 +314,13 @@ class CreateTourScreen extends StatelessWidget {
 
                             SizedBox(height: getProportionateScreenHeight(20)),
 
-                            _addMoreDetailInfo(model, () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AddContainScreen(
-                                          createTourProvider: model)));
-                            }, "addService".tr(), ""),
+                            // _addMoreDetailInfo(model, () {
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) => AddContainScreen(
+                            //               createTourProvider: model)));
+                            // }, "addService".tr(), ""),
 
                             SizedBox(
                               height: getProportionateScreenHeight(50),

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kettik_business/base/base_provider.dart';
 import 'package:kettik_business/pages/my_tour/provider/my_tour_provider.dart';
 import 'package:kettik_business/pages/my_tour/ui/add_place.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/pages/my_tour/ui/tour_detail.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';

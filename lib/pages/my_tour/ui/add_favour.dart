@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:kettik_business/base/base_provider.dart';
-import 'package:kettik_business/pages/my_tour/provider/add_place_provider.dart';
-import 'package:kettik_business/pages/my_tour/provider/create_tour_provider.dart';
-import 'package:kettik_business/pages/my_tour/ui/create_place.dart';
+import 'package:kettik_business/pages/my_tour/provider/add_favour_provider.dart';
 import 'package:kettik_business/shared/size_config.dart';
 import 'package:kettik_business/shared/theme.dart';
 import 'package:kettik_business/widgets/default_button.dart';
 import 'package:kettik_business/widgets/loading_view.dart';
 
-class AddPlaceScreen extends StatelessWidget {
+class AddFavourScreen extends StatelessWidget {
+  const AddFavourScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BaseProvider<AddPlaceProvider>(
+    return BaseProvider<AddFavourProvider>(
         onReady: (_) => _.init(context),
-        builder: (context, model, child) {
+        builder: ((context, model, child) {
           return model.isLoading
               ? const LoadingView()
               : KeyboardDismissOnTap(
@@ -23,7 +23,7 @@ class AddPlaceScreen extends StatelessWidget {
                         backgroundColor: AppColors.whiteColor,
                         foregroundColor: AppColors.systemBlackColor,
                         title: const Text(
-                          "Места",
+                          "Услуги",
                           style: TextStyle(
                               fontSize: 19, color: AppColors.systemBlackColor),
                         ),
@@ -50,7 +50,7 @@ class AddPlaceScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Шаг 1. Выберите места или создайте собственные  для создание тура.",
+                                "Шаг 2. Выберите услуги или создайте собственные для создание тура.",
                                 style: TextStyle(
                                     color: AppColors.systemBlackColor
                                         .withOpacity(0.7)),
@@ -64,7 +64,7 @@ class AddPlaceScreen extends StatelessWidget {
                               const SizedBox(
                                 height: 30,
                               ),
-                              const Text("Places in my Tour:"),
+                              const Text("Services in my Tour:"),
                               ListView.separated(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -79,7 +79,7 @@ class AddPlaceScreen extends StatelessWidget {
                                         SizedBox(
                                           width: model.size!.width * 0.7,
                                           child: Text(
-                                              model.placeList[index].name ??
+                                              model.favourList[index].name ??
                                                   ""),
                                         ),
                                         IconButton(
@@ -96,7 +96,7 @@ class AddPlaceScreen extends StatelessWidget {
                                       SizedBox(
                                           height:
                                               getProportionateScreenHeight(20)),
-                                  itemCount: model.placeList.length),
+                                  itemCount: model.favourList.length),
                             ],
                           ),
                         ),
@@ -107,15 +107,15 @@ class AddPlaceScreen extends StatelessWidget {
                         width: model.size!.width * 0.9,
                         text: "Дальше",
                         press: () {
-                          model.navigateToAddFavour(context);
+                          model.navigateToAddItems(context);
                         },
                       )),
                 );
-        },
-        model: AddPlaceProvider());
+        }),
+        model: AddFavourProvider());
   }
 
-  Widget _addItemOfContainWidget(AddPlaceProvider model) {
+  Widget _addItemOfContainWidget(AddFavourProvider model) {
     return Container(
       color: AppColors.systemDarkGrayColor.withOpacity(0.005),
       width: model.size!.width,
@@ -132,7 +132,7 @@ class AddPlaceScreen extends StatelessWidget {
                 child: TextField(
                   controller: model.controller,
                   decoration: const InputDecoration(
-                      hintText: "Search place", border: OutlineInputBorder()),
+                      hintText: "Search service", border: OutlineInputBorder()),
                 ),
               ),
             ],
@@ -141,7 +141,7 @@ class AddPlaceScreen extends StatelessWidget {
           ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.all(0),
-            itemCount: model.testPlaces.length,
+            itemCount: model.testFavours.length,
             separatorBuilder: (BuildContext context, int index) {
               return const Divider(
                 height: 1,
@@ -152,7 +152,7 @@ class AddPlaceScreen extends StatelessWidget {
                   onTap: () {
                     model.addOrDeleteInList(index);
                   },
-                  title: Text(model.testPlaces[index].name ?? "---"),
+                  title: Text(model.testFavours[index].name ?? "---"),
                   trailing: Icon(
                     model.isChoosedTestList[index]
                         ? Icons.check_box

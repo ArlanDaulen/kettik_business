@@ -2,6 +2,7 @@ import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_favour.dart';
 import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
@@ -10,6 +11,7 @@ class AddPlaceProvider extends BaseBloc {
   List<PlaceModel> placeList = [];
   TextEditingController controller = TextEditingController();
   List<bool> isChoosedTestList = [];
+
   init(BuildContext context) {
     setLoading(true);
     size = MediaQuery.of(context).size;
@@ -54,18 +56,41 @@ class AddPlaceProvider extends BaseBloc {
 
   // --------------------
   List<PlaceModel> testPlaces = [
-    PlaceModel(name: "Чарын", lattitude: "", longitude: "", isMain: false),
-    PlaceModel(name: "Kolsai", lattitude: "", longitude: "", isMain: false),
-    PlaceModel(name: "Qaiyndy", lattitude: "", longitude: "", isMain: false),
     PlaceModel(
-        name: "Zherdyn bir zheri", lattitude: "", longitude: "", isMain: false),
+      name: "Чарын",
+      lattitude: "",
+      longitude: "",
+    ),
     PlaceModel(
-        name: "Globustyn' шеті", lattitude: "", longitude: "", isMain: false),
+      name: "Kolsai",
+      lattitude: "",
+      longitude: "",
+    ),
+    PlaceModel(
+      name: "Qaiyndy",
+      lattitude: "",
+      longitude: "",
+    ),
+    PlaceModel(
+      name: "Zherdyn bir zheri",
+      lattitude: "",
+      longitude: "",
+    ),
+    PlaceModel(
+      name: "Globustyn' шеті",
+      lattitude: "",
+      longitude: "",
+    ),
   ];
 
   void addOrDeleteInList(int index) {
     isChoosedTestList[index] = !isChoosedTestList[index];
     placeList.add(testPlaces[index]);
     notifyListeners();
+  }
+
+  void navigateToAddFavour(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => const AddFavourScreen()));
   }
 }
