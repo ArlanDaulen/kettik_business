@@ -109,7 +109,9 @@ class AddPlaceScreen extends StatelessWidget {
                                   itemCount: model.placeList.length),
 
                               model.placeList.isEmpty
-                                  ? const SizedBox()
+                                  ? const SizedBox(
+                                      height: 80,
+                                    )
                                   : const SizedBox(
                                       height: 120,
                                     ),
@@ -119,12 +121,26 @@ class AddPlaceScreen extends StatelessWidget {
                       ),
                       floatingActionButtonLocation:
                           FloatingActionButtonLocation.centerDocked,
-                      floatingActionButton: DefaultButton(
-                        width: model.size!.width * 0.9,
-                        text: "Дальше",
-                        press: () {
-                          model.saveAndNavigateToAddFavour(context);
-                        },
+                      floatingActionButton: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          DefaultButton(
+                            width: model.size!.width * 0.9,
+                            text: "Предложить новое место",
+                            press: () {
+                              model.toCreatePlace(context);
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          DefaultButton(
+                            width: model.size!.width * 0.9,
+                            text: "Дальше",
+                            press: () {
+                              model.saveAndNavigateToAddFavour(context);
+                            },
+                          ),
+                        ],
                       )),
                 );
         },
@@ -156,6 +172,7 @@ class AddPlaceScreen extends StatelessWidget {
           const SizedBox(height: 10),
           ListView.separated(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(0),
             itemCount: model.testPlaces.length,
             separatorBuilder: (BuildContext context, int index) {

@@ -115,4 +115,13 @@ class AddPlaceProvider extends BaseBloc {
       ),
     );
   }
+
+  void toCreatePlace(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => CreatePlaceScreen(
+                  addPlaceProvider: this,
+                )));
+  }
 }

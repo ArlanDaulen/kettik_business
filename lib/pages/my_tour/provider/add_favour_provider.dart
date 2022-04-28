@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kettik_business/app/data/models/favour_model.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
-
-import '../ui/add_item.dart';
+import 'package:kettik_business/pages/my_tour/ui/add_item.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_favour.dart';
 
 class AddFavourProvider extends BaseBloc {
   Size? size;
@@ -60,5 +60,14 @@ class AddFavourProvider extends BaseBloc {
         ),
       ),
     );
+  }
+
+  void toCreateFavour(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => CreateFavourScreen(
+                  addFavourProvider: this,
+                )));
   }
 }

@@ -3,6 +3,7 @@ import 'package:kettik_business/app/data/models/favour_model.dart';
 import 'package:kettik_business/app/data/models/item_model.dart';
 import 'package:kettik_business/app/data/models/place_model.dart';
 import 'package:kettik_business/base/base_bloc.dart';
+import 'package:kettik_business/pages/my_tour/ui/create_item.dart';
 import 'package:kettik_business/pages/my_tour/ui/create_tour.dart';
 import 'package:kettik_business/shared/size_config.dart';
 
@@ -11,22 +12,23 @@ class AddItemProvider extends BaseBloc {
   List<ItemModel> itemList = [];
   TextEditingController controller = TextEditingController();
   int itemCount = 0;
-  List<PlaceModel>? placeList;
-  List<FavourModel>? favourList;
+  List<bool> isChoosedTestList = [];
 
   init(
     BuildContext context,
-    List<PlaceModel> _placeList,
-    List<FavourModel> _favourList,
   ) {
     setLoading(true);
     size = MediaQuery.of(context).size;
-    placeList = _placeList;
-    favourList = _favourList;
     SizeConfig().init(context);
+    isChoosedTestList = List.generate(testItems.length, (index) => false);
     setLoading(false);
   }
 
+  List<ItemModel> testItems = [
+    ItemModel(id: 1, name: "Плед"),
+    ItemModel(id: 2, name: "Фонари"),
+    ItemModel(id: 3, name: "Палатки"),
+  ];
   void addItem() {
     itemList.add(
       ItemModel(
@@ -39,32 +41,40 @@ class AddItemProvider extends BaseBloc {
     notifyListeners();
   }
 
+  void addOrDeleteInList(int index) {
+    isChoosedTestList[index] = !isChoosedTestList[index];
+    if (isChoosedTestList[index]) {
+      itemList.add(testItems[index]);
+    } else {
+      itemList.remove(testItems[index]);
+    }
+    notifyListeners();
+  }
+
   void deleteItemFromContainList(int index) {
     itemList.removeAt(index);
     notifyListeners();
   }
 
-  void navigateToCreateTourPage(BuildContext context) => Navigator.push(
+  void navigateToCreateTourPage(BuildContext context,
+          List<PlaceModel> placeList, List<FavourModel> favourList) =>
+      Navigator.push(
         context,
         MaterialPageRoute(
           builder: (_) => CreateTourScreen(
-            placeList: placeList!,
-            favourList: favourList!,
+            placesList: placeList,
+            favourList: favourList,
             itemList: itemList,
           ),
         ),
       );
 
-  void save(BuildContext context) {
+  void toCreateItem(BuildContext context) {
     Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => CreateTourScreen(
-          placeList: placeList!,
-          favourList: favourList!,
-          itemList: itemList,
-        ),
-      ),
-    );
+        context,
+        MaterialPageRoute(
+            builder: (_) => CreateItemScreen(
+                  addItemProvider: this,
+                )));
   }
 }

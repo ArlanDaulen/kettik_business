@@ -15,19 +15,19 @@ import 'package:kettik_business/widgets/default_button.dart';
 import '../../../app/data/models/favour_model.dart';
 
 class CreateTourScreen extends StatelessWidget {
-  final List<PlaceModel> placeList;
+  final List<PlaceModel> placesList;
   final List<FavourModel> favourList;
   final List<ItemModel> itemList;
 
   CreateTourScreen({
-    required this.placeList,
+    required this.placesList,
     required this.favourList,
     required this.itemList,
   });
   @override
   Widget build(BuildContext context) {
     return BaseProvider<CreateTourProvider>(
-        onReady: (_) => _.init(context, placeList),
+        onReady: (_) => _.init(context),
         builder: (context, model, child) {
           return KeyboardDismissOnTap(
             child: Scaffold(
@@ -70,7 +70,7 @@ class CreateTourScreen extends StatelessWidget {
                           children: [
                             SizedBox(height: getProportionateScreenHeight(30)),
                             Text(
-                              "Шаг 2. Креативно опишите ваш тур.",
+                              "Шаг 4. Креативно опишите ваш тур.",
                               style: TextStyle(
                                   color: AppColors.systemBlackColor
                                       .withOpacity(0.7)),
@@ -270,65 +270,67 @@ class CreateTourScreen extends StatelessWidget {
 
                             SizedBox(height: getProportionateScreenHeight(40)),
                             Text(
-                              "additionalLocations".tr(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w700),
+                              "additionalLocations".tr() + ":",
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             ),
                             ListView.builder(
-                                itemCount: model.placesList.length,
+                                padding: const EdgeInsets.all(0),
+                                itemCount: placesList.length,
                                 shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  return Text(
-                                      " - " + model.placesList[index].name!);
+                                  return Text(" - " + placesList[index].name!);
                                 }),
 
-                            SizedBox(height: getProportionateScreenHeight(50)),
-                            // _addMoreDetailInfo(model, () {
-                            //   Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //           builder: (_) => AddPlaceScreen()));
-                            // }, "addPlace".tr(), "description"),
-
-                            // SizedBox(
-                            //   height: getProportionateScreenHeight(40),
-                            // ),
+                            SizedBox(height: getProportionateScreenHeight(30)),
 
                             Text(
-                              "tourServices".tr(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w700),
+                              "tourServices".tr() + ":",
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
                             ),
-                            model.containList.isEmpty
+                            SizedBox(height: getProportionateScreenHeight(5)),
+                            favourList.isEmpty
                                 ? const Text("- Empty list")
                                 : ListView.builder(
-                                    itemCount: model.containList.length,
+                                    padding: const EdgeInsets.all(0),
+                                    itemCount: favourList.length,
                                     shrinkWrap: true,
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       return Text(
-                                          " - " + model.containList[index]);
+                                          " - " + favourList[index].name!);
                                     }),
 
-                            SizedBox(height: getProportionateScreenHeight(20)),
+                            SizedBox(height: getProportionateScreenHeight(30)),
 
-                            // _addMoreDetailInfo(model, () {
-                            //   Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //           builder: (context) => AddContainScreen(
-                            //               createTourProvider: model)));
-                            // }, "addService".tr(), ""),
-
+                            const Text(
+                              "Tour items:",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w700),
+                            ),
+                            SizedBox(height: getProportionateScreenHeight(5)),
+                            favourList.isEmpty
+                                ? const Text("- Empty list")
+                                : ListView.builder(
+                                    padding: const EdgeInsets.all(0),
+                                    itemCount: itemList.length,
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      return Text(
+                                          " - " + itemList[index].name!);
+                                    }),
                             SizedBox(
                               height: getProportionateScreenHeight(50),
                             ),
                             //price double
                             Text("ticketPrice".tr()),
                             SizedBox(
-                              height: getProportionateScreenHeight(5),
+                              height: getProportionateScreenHeight(8),
                             ),
                             TextFormField(
                               controller: model.priceOfTourController,

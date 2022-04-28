@@ -22,11 +22,7 @@ class AddItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseProvider<AddItemProvider>(
-      onReady: (_) => _.init(
-        context,
-        placesList,
-        favourList,
-      ),
+      onReady: (_) => _.init(context),
       model: AddItemProvider(),
       builder: (context, model, child) {
         return model.isLoading
@@ -46,21 +42,13 @@ class AddItemScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10.0),
                         child: IconButton(
                           onPressed: () {
-                            model.save(context);
+                            model.navigateToCreateTourPage(
+                                context, placesList, favourList);
                           },
                           icon: const Icon(Icons.arrow_forward_ios),
                         ),
                       )
                     ],
-                  ),
-                  floatingActionButtonLocation:
-                      FloatingActionButtonLocation.centerDocked,
-                  floatingActionButton: DefaultButton(
-                    width: model.size!.width * 0.9,
-                    text: "Дальше",
-                    press: () {
-                      model.navigateToCreateTourPage(context);
-                    },
                   ),
                   body: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
@@ -74,7 +62,7 @@ class AddItemScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Шаг 3. Создайте вещи для создание тура.",
+                            "Шаг 3. Выберите вещи или создайте собственные для создание тура.",
                             style: TextStyle(
                               color:
                                   AppColors.systemBlackColor.withOpacity(0.7),
@@ -118,6 +106,30 @@ class AddItemScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  floatingActionButton: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DefaultButton(
+                        width: model.size!.width * 0.9,
+                        text: "Создать новую вещь",
+                        press: () {
+                          model.toCreateItem(context);
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      DefaultButton(
+                        width: model.size!.width * 0.9,
+                        text: "Дальше",
+                        press: () {
+                          model.navigateToCreateTourPage(
+                              context, placesList, favourList);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               );
       },
@@ -126,30 +138,54 @@ class AddItemScreen extends StatelessWidget {
 }
 
 Widget _addItemOfContainWidget(AddItemProvider model) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      SizedBox(
-        width: model.size!.width * 0.75,
-        child: TextField(
-          controller: model.controller,
-          decoration: const InputDecoration(
-              hintText: "Item or Event in Tour", border: OutlineInputBorder()),
+  return Container(
+    color: AppColors.systemDarkGrayColor.withOpacity(0.005),
+    width: model.size!.width,
+    padding: const EdgeInsets.only(top: 10, bottom: 30),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: model.size!.width * 0.79,
+              child: TextField(
+                controller: model.controller,
+                decoration: const InputDecoration(
+                    hintText: "Search service", border: OutlineInputBorder()),
+              ),
+            ),
+          ],
         ),
-      ),
-      SizedBox(
-        child: IconButton(
-          icon: Icon(
-            Icons.add_box,
-            color: AppColors.bgBlueColor,
-          ),
-          onPressed: () {
-            model.addItem();
+        const SizedBox(height: 10),
+        ListView.separated(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(0),
+          itemCount: model.testItems.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return const Divider(
+              height: 1,
+            );
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+                onTap: () {
+                  model.addOrDeleteInList(index);
+                },
+                title: Text(model.testItems[index].name ?? "---"),
+                trailing: Icon(
+                  model.isChoosedTestList[index]
+                      ? Icons.check_box
+                      : Icons.add_box,
+                  color: model.isChoosedTestList[index]
+                      ? AppColors.primaryColor.withOpacity(0.95)
+                      : AppColors.primaryColor.withOpacity(0.55),
+                ));
           },
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }

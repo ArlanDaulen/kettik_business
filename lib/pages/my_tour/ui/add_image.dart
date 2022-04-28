@@ -22,7 +22,7 @@ class AddImageScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               foregroundColor: AppColors.systemBlackColor,
-              title: Text(
+              title: const Text(
                 "Add images",
                 style: TextStyle(
                   color: AppColors.systemBlackColor,
@@ -40,7 +40,7 @@ class AddImageScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   Text(
-                    "Шаг 3. Добавьте изображения.",
+                    "Шаг 5. Добавьте изображения.",
                     style: TextStyle(
                         color: AppColors.systemBlackColor.withOpacity(0.7)),
                   ),

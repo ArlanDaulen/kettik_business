@@ -62,7 +62,7 @@ class AddFavourScreen extends StatelessWidget {
 
                             //TODO here tours by search
 
-                            _addItemOfContainWidget(model),
+                            _addFavourWidget(model),
                             const SizedBox(
                               height: 30,
                             ),
@@ -109,12 +109,26 @@ class AddFavourScreen extends StatelessWidget {
                     ),
                     floatingActionButtonLocation:
                         FloatingActionButtonLocation.centerDocked,
-                    floatingActionButton: DefaultButton(
-                      width: model.size!.width * 0.9,
-                      text: "Дальше",
-                      press: () {
-                        model.saveAndNavigateToAddItems(context, placeList);
-                      },
+                    floatingActionButton: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        DefaultButton(
+                          width: model.size!.width * 0.9,
+                          text: "Создать новую услугу",
+                          press: () {
+                            model.toCreateFavour(context);
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        DefaultButton(
+                          width: model.size!.width * 0.9,
+                          text: "Дальше",
+                          press: () {
+                            model.saveAndNavigateToAddItems(context, placeList);
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -122,7 +136,7 @@ class AddFavourScreen extends StatelessWidget {
         model: AddFavourProvider());
   }
 
-  Widget _addItemOfContainWidget(AddFavourProvider model) {
+  Widget _addFavourWidget(AddFavourProvider model) {
     return Container(
       color: AppColors.systemDarkGrayColor.withOpacity(0.005),
       width: model.size!.width,

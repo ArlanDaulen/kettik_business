@@ -60,36 +60,37 @@ class CreatePlaceScreen extends StatelessWidget {
                 ),
               ],
             ),
-            body: Column(
-              mainAxisSize: MainAxisSize.min,
+            body: Stack(
+              // mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20),
+                // const SizedBox(height: 20),
+                // SizedBox(
+                //   width: model.size!.width * 0.9,
+                //   child: TextField(
+                //     focusNode: model.myFocusNode,
+                //     controller: model.placeNameContoller,
+                //     onEditingComplete: () {
+                //       model.addPlace();
+                //     },
+                //     decoration: const InputDecoration(
+                //         hintText: "Name of place",
+                //         border: OutlineInputBorder()),
+                //   ),
+                // ),
+                // const SizedBox(height: 20),
                 SizedBox(
-                  width: model.size!.width * 0.9,
-                  child: TextField(
-                    focusNode: model.myFocusNode,
-                    controller: model.placeNameContoller,
-                    onEditingComplete: () {
-                      model.addPlace();
-                    },
-                    decoration: const InputDecoration(
-                        hintText: "Name of place",
-                        border: OutlineInputBorder()),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                    height: model.size!.height * 0.5,
+                    // height: model.size!.height * 0.5,
                     child: GoogleMap(
-                      mapType: MapType.normal,
-                      initialCameraPosition: model.initialCameraPosition,
-                      myLocationButtonEnabled: false,
-                      zoomControlsEnabled: false,
-                      onMapCreated: (controller) =>
-                          model.googleMapController = controller,
-                      markers: model.markers,
-                      onTap: (pos) => model.focusRequestAndSavePosition(pos),
-                    )),
+                  mapType: MapType.normal,
+                  initialCameraPosition: model.initialCameraPosition,
+                  myLocationButtonEnabled: false,
+                  zoomControlsEnabled: false,
+                  onMapCreated: (controller) =>
+                      model.googleMapController = controller,
+                  markers: model.markers,
+                  onTap: (pos) => model.focusRequestAndSavePosition(pos),
+                )),
+
                 model.markers.isNotEmpty
                     ? Expanded(
                         child: ListView.builder(
@@ -127,6 +128,26 @@ class CreatePlaceScreen extends StatelessWidget {
                         ),
                       )
                     : const SizedBox(),
+                Container(
+                  margin: EdgeInsets.only(
+                    left: model.size!.width * 0.05,
+                    right: model.size!.width * 0.05,
+                    top: 20,
+                  ),
+                  width: model.size!.width * 0.9,
+                  decoration: BoxDecoration(
+                      color: AppColors.whiteColor.withOpacity(0.7)),
+                  child: TextField(
+                    focusNode: model.myFocusNode,
+                    controller: model.placeNameContoller,
+                    onEditingComplete: () {
+                      model.addPlace();
+                    },
+                    decoration: const InputDecoration(
+                        hintText: "Name of place",
+                        border: OutlineInputBorder()),
+                  ),
+                ),
               ],
             ),
           ),
